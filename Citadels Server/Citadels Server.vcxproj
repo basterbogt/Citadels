@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{61D5FF06-801B-40E4-94FA-592215DC026D}</ProjectGuid>
+    <ProjectGuid>{B9205F72-47ED-4E4D-AF8C-707FF4C109F4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Citadels</RootNamespace>
+    <RootNamespace>CitadelsServer</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -81,7 +81,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Citadels.cpp" />
+    <ClCompile Include="Citadels Server.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
