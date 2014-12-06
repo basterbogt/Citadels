@@ -12,12 +12,6 @@
 
 using namespace std;
 
-namespace socketexample {
-	const int tcp_port{ 8765 };
-	const std::string prompt{ "> " };
-}
-
-
 GameLoop::GameLoop()
 {
 	getServerInformation();

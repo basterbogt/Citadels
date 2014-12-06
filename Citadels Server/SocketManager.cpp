@@ -1,4 +1,5 @@
 #include "SocketManager.h"
+#include "InputManager.h"
 
 #include <thread>
 #include <iostream>
@@ -6,6 +7,7 @@
 #include <string>
 #include <exception>
 #include <memory>
+
 using namespace std;
 
 #include "Socket.h"
@@ -14,20 +16,18 @@ using namespace std;
 
 
 static Sync_queue<ClientCommand> queue;
+
 void consume_command() // runs in its own thread
 {
+	InputManager* inputManager = new InputManager();
 	while (true) {
 		ClientCommand command;
 		queue.get(command); // will block here unless there still are command objects in the queue
 		shared_ptr<Socket> client{ command.get_client() };
 		if (client) {
 			try {
-				// TODO handle command here
-
-				// TODO BAS HIERO:
-
 				client->write("Hey, you wrote: '");
-				client->write(command.get_cmd());
+				client->write(inputManager->HandleInput(command.get_cmd()));
 				client->write("', but I'm not doing anything with it.\n");
 			}
 			catch (const exception& ex) {
@@ -44,6 +44,7 @@ void consume_command() // runs in its own thread
 			cerr << "trying to handle command for client who has disappeared...\n";
 		}
 	}
+	delete inputManager;
 }
 void handle_client(Socket* socket) // this function runs in a separate thread
 {
@@ -111,6 +112,7 @@ SocketManager::SocketManager()
 
 SocketManager::~SocketManager()
 {
+
 }
 
 void SocketManager::getServerInformation(){
