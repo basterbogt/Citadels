@@ -23,17 +23,18 @@ GameLoop::GameLoop()
 		try {
 			// read first line of request
 			string cmd = server->readline();
-			cerr << "server (" << server->get() << ") said: " << cmd << '\n';
 
 			if (cmd == "Bye!") {
 				break; // out of game loop, will end this thread and close connection
 			}
-
-			string input = "";
-			getline(cin, input);
-			cout << endl << input << endl;
-			server->write(input + "\n");
-
+			else if (cmd == "input"){
+				string input = "";
+				getline(cin, input);
+				server->write(input + "\n");
+			}
+			else{
+				cerr << cmd << '\n';
+			}
 		}
 		catch (const exception& ex) {
 			//server->write("ERROR: ");

@@ -14,6 +14,7 @@ using namespace std;
 #include "Sync_queue.h"
 #include "ClientCommand.h"
 
+std::string GET_PLAYER_INPUT = "input\n";
 
 static Sync_queue<ClientCommand> queue;
 
@@ -50,6 +51,7 @@ void handle_client(Socket* socket) // this function runs in a separate thread
 {
 	shared_ptr<Socket> client{ socket };
 	client->write("Welcome to Server 1.0! To quit, type 'quit'.\n");
+	client->write(GET_PLAYER_INPUT);
 	//client->write(socketexample::prompt);
 
 	while (true) { // game loop
