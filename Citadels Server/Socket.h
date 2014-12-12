@@ -16,6 +16,8 @@
 //	Socket to connect to a server on a tcp-port
 //=============================================================================
 
+#define GET_PLAYER_INPUT "input\n"
+
 #if defined(__APPLE__) || defined(__linux__)
 	#include <sys/socket.h>
 	typedef int SOCKET;

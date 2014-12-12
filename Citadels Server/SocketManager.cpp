@@ -13,10 +13,14 @@ using namespace std;
 #include "Socket.h"
 #include "Sync_queue.h"
 #include "ClientCommand.h"
+#include "PlayerInput.h"
 
-std::string GET_PLAYER_INPUT = "input\n";
+using namespace Citadels;
+
 
 static Sync_queue<ClientCommand> queue;
+
+
 
 void consume_command() // runs in its own thread
 {
@@ -27,9 +31,7 @@ void consume_command() // runs in its own thread
 		shared_ptr<Socket> client{ command.get_client() };
 		if (client) {
 			try {
-				client->write("Hey, you wrote: '");
-				client->write(inputManager->HandleInput(command.get_cmd()));
-				client->write("', but I'm not doing anything with it.\n");
+				PlayerInput[client.get()->get()] = command.get_cmd();
 			}
 			catch (const exception& ex) {
 				client->write("Sorry, ");

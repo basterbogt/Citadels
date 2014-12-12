@@ -79,6 +79,8 @@
   <ItemGroup>
     <ClInclude Include="ClientCommand.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -89,6 +91,7 @@
   <ItemGroup>
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SocketManager.cpp" />
     <ClCompile Include="stdafx.cpp">
