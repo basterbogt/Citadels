@@ -8,53 +8,33 @@
 #include <exception>
 #include <memory>
 
+#include "SyncedQueue.h"
+
 using namespace std;
+using namespace syncedQueue;
 
 #include "Socket.h"
 #include "Sync_queue.h"
 #include "ClientCommand.h"
-#include "PlayerInput.h"
 
-using namespace Citadels;
-
-
-static Sync_queue<ClientCommand> queue;
+#include "GameManager.h"
 
 
 
-void consume_command() // runs in its own thread
+void Start_GameLoop(shared_ptr<GameManager> gm) // runs in its own thread
 {
-	InputManager* inputManager = new InputManager();
-	while (true) {
-		ClientCommand command;
-		queue.get(command); // will block here unless there still are command objects in the queue
-		shared_ptr<Socket> client{ command.get_client() };
-		if (client) {
-			try {
-				PlayerInput[client.get()->get()] = command.get_cmd();
-			}
-			catch (const exception& ex) {
-				client->write("Sorry, ");
-				client->write(ex.what());
-				client->write("\n");
-			}
-			catch (...) {
-				client->write("Sorry, something went wrong during handling of your request.\n");
-			}
-			//client->write(socketexample::prompt);
-		}
-		else {
-			cerr << "trying to handle command for client who has disappeared...\n";
-		}
-	}
-	delete inputManager;
+	gm->GameLoop();
 }
-void handle_client(Socket* socket) // this function runs in a separate thread
+
+void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function runs in a separate thread
 {
 	shared_ptr<Socket> client{ socket };
 	client->write("Welcome to Server 1.0! To quit, type 'quit'.\n");
 	client->write(GET_PLAYER_INPUT);
 	//client->write(socketexample::prompt);
+
+	shared_ptr<Player> player{ new Player(client) };
+	gm->setPlayer(player);
 
 	while (true) { // game loop
 		try {
@@ -68,7 +48,7 @@ void handle_client(Socket* socket) // this function runs in a separate thread
 				break; // out of game loop, will end this thread and close connection
 			}
 
-			ClientCommand command{ cmd, client };
+			ClientCommand command{ cmd, player, client };
 			queue.put(command);
 
 		}
@@ -87,9 +67,14 @@ SocketManager::SocketManager()
 {
 	getServerInformation();
 
+	std::shared_ptr < GameManager > gm{ new GameManager };
+
 	// start command consumer thread
-	thread consumer{ consume_command };
+	thread consumer{ Start_GameLoop, gm };
 	consumer.detach(); // detaching is usually ugly, but in this case the right thing to do
+
+
+
 
 	// create a server socket
 	ServerSocket server(m_Port);
@@ -102,7 +87,7 @@ SocketManager::SocketManager()
 
 			while ((client = server.accept()) != nullptr) {
 				// communicate with client over new socket in separate thread
-				thread handler{ handle_client, client };
+				thread handler{ handle_client, client, gm };
 				handler.detach(); // detaching is usually ugly, but in this case the right thing to do
 				cerr << "server listening again" << '\n';
 			}

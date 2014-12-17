@@ -3,11 +3,9 @@
 #include <string>
 #include "Socket.h"
 #include <memory>
-#include "PlayerInput.h"
 
 using std::shared_ptr;
 using std::string;
-using namespace Citadels;
 
 class Player
 {
@@ -16,10 +14,11 @@ private:
 	int m_GoldPieces;
 	shared_ptr<Socket> m_Socket;
 public:
-	Player(string name, shared_ptr<Socket> socket);
+	Player(shared_ptr<Socket> socket);
 
+	void setName(string name);
 	void Send(string Message);
-	void GetInput();
+	void AllowInput();
 	string GetLastInput();
 
 	virtual ~Player();

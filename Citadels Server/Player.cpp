@@ -1,24 +1,22 @@
 #include "Player.h"
 
-Player::Player(string name, shared_ptr<Socket> socket)
+Player::Player(shared_ptr<Socket> socket)
 {
-	m_Name = name;
 	m_Socket = (socket);
 }
 
+void Player::setName(string name){
+	m_Name = name;
+}
 
 void Player::Send(string Message){
 
 }
 
-void Player::GetInput(){
+void Player::AllowInput(){
 	m_Socket->write(GET_PLAYER_INPUT);
 }
-string Player::GetLastInput(){
-	string result = PlayerInput[m_Socket->get()];
-	PlayerInput[m_Socket->get()] = "";
-	return result;
-}
+
 
 Player::~Player()
 {

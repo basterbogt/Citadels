@@ -12,21 +12,27 @@
 #include <string>
 #include <memory>
 #include "Socket.h"
+#include "Player.h"
 
 class ClientCommand {
 public:
     ClientCommand() {}
-    ClientCommand(const std::string& cmd, std::shared_ptr<Socket> client) : cmd(cmd), client(client) {}
+	ClientCommand(const std::string& cmd, std::shared_ptr<Player> player, std::shared_ptr<Socket> client) : cmd(cmd), player(player), client(client) {}
     
     std::string get_cmd() const { return cmd; }
     void set_cmd(const std::string& command) { cmd = command; }
     
     std::shared_ptr<Socket> get_client() const { return client; }
     void set_client(std::shared_ptr<Socket> socket) { client = socket; }
+
+	std::shared_ptr<Player> getPlayer(){
+		return player;
+	}
     
 private:
     std::string cmd;
     std::shared_ptr<Socket> client;
+	std::shared_ptr<Player> player;
 };
 
 #endif /* defined(__socketexample__ClientCommand__) */
