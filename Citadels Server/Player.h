@@ -3,20 +3,34 @@
 #include <string>
 #include "Socket.h"
 #include <memory>
+#include <vector>
 
+#include "CardPile.h"
+#include "CharacterCard.h"
+#include "DistrictCard.h"
+
+using std::vector;
 using std::shared_ptr;
 using std::string;
+
 
 class Player
 {
 private:
 	string m_Name;
-	int m_GoldPieces;
+	int m_GoldPieces{ 0 };
 	shared_ptr<Socket> m_Socket;
+	shared_ptr<CardPile<CharacterCard>> m_CharacterCards;
+	shared_ptr<CardPile<DistrictCard>> m_DistrictCard;
 public:
 	Player(shared_ptr<Socket> socket);
 
-	void setName(string name);
+	shared_ptr<CardPile<CharacterCard>> GetCharacterCardContainer();
+	shared_ptr<CardPile<DistrictCard>> GetDistrictCardContainer();
+	bool HasCharacterCard(eCharacterCard role);
+
+	string GetName();
+	void SetName(string name);
 	void Send(string Message);
 	void AllowInput();
 	string GetLastInput();

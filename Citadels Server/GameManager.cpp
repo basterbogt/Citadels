@@ -1,29 +1,40 @@
 #include "GameManager.h"
 #include <exception>
 #include "SyncedQueue.h"
+#include "LobbyState.h"
 
 using std::exception;
 using std::cerr;
 using namespace syncedQueue;
 
 
-GameManager::GameManager(){
-
+GameManager::GameManager()
+{
+	m_PlayerListContainer = shared_ptr<PlayerList> {new PlayerList};
+	m_CurrentGameState = unique_ptr<IGameState> {new LobbyState};
 }
+
+
 
 void GameManager::GameLoop()
 {
-	int* i = 0;
-	while (true){
 
-		printf("BAS YO");
-		printf(GetPlayerInput(m_Player).c_str());
-
-
+	while (m_Playing)
+	{
+		m_CurrentGameState->Handle(*this);
 	}
+
 
 }
 
+
+void GameManager::SetGamestate(unique_ptr<IGameState> state){
+	m_CurrentGameState = std::move(state);
+}
+
+void GameManager::Exit(){
+	m_Playing = false;
+}
 
 string GameManager::GetPlayerInput(shared_ptr<Player> player) 
 {
@@ -34,6 +45,7 @@ string GameManager::GetPlayerInput(shared_ptr<Player> player)
 		if (client) {
 			try {
 				if (command.getPlayer() == player){
+					
 					return command.get_cmd();
 				}
 					//PlayerInput.put(client.get()->get(), command.get_cmd());
@@ -55,6 +67,9 @@ string GameManager::GetPlayerInput(shared_ptr<Player> player)
 
 }
 
+shared_ptr<PlayerList> GameManager::GetPlayerList(){
+	return m_PlayerListContainer;
+}
 
 GameManager::~GameManager()
 {

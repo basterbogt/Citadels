@@ -21,7 +21,7 @@ using namespace syncedQueue;
 
 
 
-void Start_GameLoop(shared_ptr<GameManager> gm) // runs in its own thread
+void Start_GameLoop(shared_ptr<GameManager> gm)
 {
 	gm->GameLoop();
 }
@@ -29,12 +29,23 @@ void Start_GameLoop(shared_ptr<GameManager> gm) // runs in its own thread
 void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function runs in a separate thread
 {
 	shared_ptr<Socket> client{ socket };
-	client->write("Welcome to Server 1.0! To quit, type 'quit'.\n");
-	client->write(GET_PLAYER_INPUT);
-	//client->write(socketexample::prompt);
-
 	shared_ptr<Player> player{ new Player(client) };
-	gm->setPlayer(player);
+
+	/* Get Player Name: */
+	player->Send("Welcome to the fancy game Citadels! What is your name?\n");
+	player->AllowInput();
+	string name = client->readline();
+
+	/* TODO: */
+	// Check if the game is already in progress...
+	//If in progress:
+	/* Tell the player he missed the train... return method (and thus end thread and close connection) */
+	
+	//If not in progress:
+	client->write("Let's wait untill all players are ready! To quit, type 'quit'.\n");
+	player->SetName(name);
+
+	gm->GetPlayerList()->InsertPlayer(player);
 
 	while (true) { // game loop
 		try {
