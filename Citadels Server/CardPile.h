@@ -19,6 +19,14 @@ private:
 public:
 	CardPile(){}
 
+	shared_ptr<T> At(int position){
+		shared_ptr<T> card{ nullptr };
+		if (position > 0 && position < Size()){
+			card = m_Cards.at(position);
+		}
+		return card;
+	}
+
 	shared_ptr<T> Pop(){
 		shared_ptr<T> card{ nullptr };
 		if (!m_Cards.empty()){
@@ -34,11 +42,23 @@ public:
 		}
 		return card;
 	}
+
+	shared_ptr<T> Take(int position){
+		shared_ptr<T> card{ nullptr };
+		if (position > 0 && position < Size()){
+			card = m_Cards.at(position);
+			m_Cards.erase(m_Cards.begin() + position);
+		}
+		return card;
+	}
+
 	void Shuffle(){
 		std::random_shuffle(m_Cards.begin(), m_Cards.end());
 	}
-	void Push_Top(shared_ptr<T> card);
-	void Push_Bottom(shared_ptr<T> card);
+
+	void Push_Back(shared_ptr<T> card){
+		m_Cards.push_back(card);
+	}
 
 	int Size(){
 		return m_Cards.size();

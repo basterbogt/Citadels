@@ -8,6 +8,11 @@ PlayerList::PlayerList()
 
 
 
+shared_ptr<Player> PlayerList::GetPlayerAt(int position){
+	if (position < 0 || position >= Size()) return nullptr;
+	return m_PlayerList.at(position);
+}
+
 shared_ptr<Player> PlayerList::GetPlayerByRole(eCharacterCard card){
 	shared_ptr<Player> player{ nullptr };
 	for (int i = 0; i < m_PlayerList.size() && player == nullptr; i++){

@@ -1,9 +1,9 @@
 #include "CharacterCard.h"
 
 
-CharacterCard::CharacterCard(eCharacterCard characterEnum) : m_Enum(characterEnum)
+CharacterCard::CharacterCard(string name, eCharacterCard characterEnum): m_Enum(characterEnum)
 {
-
+	m_Name = name;
 }
 
 

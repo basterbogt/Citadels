@@ -16,6 +16,7 @@ private:
 public:
 	PlayerList();
 
+	shared_ptr<Player> GetPlayerAt(int position);
 	shared_ptr<Player> GetPlayerByRole(eCharacterCard card);
 	shared_ptr<Player> GetPlayerByName(string name);
 	void InsertPlayer(shared_ptr<Player> player);

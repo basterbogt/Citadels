@@ -77,18 +77,29 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ArchitectState.h" />
+    <ClInclude Include="AssassinState.h" />
+    <ClInclude Include="BishopState.h" />
+    <ClInclude Include="CardManager.h" />
     <ClInclude Include="CardPile.h" />
     <ClInclude Include="CharacterCard.h" />
+    <ClInclude Include="CharacterSelectionState.h" />
     <ClInclude Include="ClientCommand.h" />
     <ClInclude Include="DistrictCard.h" />
+    <ClInclude Include="FinishedState.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameRunningState.h" />
     <ClInclude Include="ICard.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="IRoundState.h" />
+    <ClInclude Include="KingState.h" />
     <ClInclude Include="LobbyState.h" />
+    <ClInclude Include="MagicianState.h" />
+    <ClInclude Include="MerchantState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerList.h" />
+    <ClInclude Include="RoundFinishedState.h" />
     <ClInclude Include="Socket.h" />
     <ClInclude Include="SocketManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -96,27 +107,41 @@
     <ClInclude Include="Sync_map.h" />
     <ClInclude Include="Sync_queue.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="ThiefState.h" />
     <ClInclude Include="throw.h" />
+    <ClInclude Include="WarlordState.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArchitectState.cpp" />
+    <ClCompile Include="AssassinState.cpp" />
+    <ClCompile Include="BishopState.cpp" />
+    <ClCompile Include="CardManager.cpp" />
     <ClCompile Include="CharacterCard.cpp" />
+    <ClCompile Include="CharacterSelectionState.cpp" />
     <ClCompile Include="DistrictCard.cpp" />
+    <ClCompile Include="FinishedState.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameRunningState.cpp" />
     <ClCompile Include="ICard.cpp" />
-    <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="IRoundState.cpp" />
+    <ClCompile Include="KingState.cpp" />
     <ClCompile Include="LobbyState.cpp" />
+    <ClCompile Include="MagicianState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MerchantState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerList.cpp" />
+    <ClCompile Include="RoundFinishedState.cpp" />
     <ClCompile Include="Socket.cpp" />
     <ClCompile Include="SocketManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ThiefState.cpp" />
     <ClCompile Include="throw.cpp" />
+    <ClCompile Include="WarlordState.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

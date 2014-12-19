@@ -40,14 +40,26 @@
     <Filter Include="Source Files\State">
       <UniqueIdentifier>{8333d54c-7802-4d5f-97b1-0a11f082cc4d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\State">
-      <UniqueIdentifier>{a385571e-f3d3-43ab-9770-2dbb649ffb36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Cards">
       <UniqueIdentifier>{7f26c874-bfa7-4195-b1e5-835013ae6845}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Cards">
       <UniqueIdentifier>{7b9efa88-51c4-432b-8dcf-d33796e69bc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State">
+      <UniqueIdentifier>{a385571e-f3d3-43ab-9770-2dbb649ffb36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State\GameState">
+      <UniqueIdentifier>{5f95f6a2-b906-42b0-81de-5ad16a026cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State\RoundState">
+      <UniqueIdentifier>{12c37258-e745-4b87-8924-679515e049e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\GameState">
+      <UniqueIdentifier>{48aa5245-3753-4238-8088-026d0d974cfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State\RoundState">
+      <UniqueIdentifier>{67a7f88f-176f-428b-ad1d-ece75b994d82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,26 +105,65 @@
     <ClInclude Include="PlayerList.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="IGameState.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
-    <ClInclude Include="GameRunningState.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
-    <ClInclude Include="LobbyState.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
     <ClInclude Include="CardPile.h">
       <Filter>Header Files\Cards</Filter>
     </ClInclude>
     <ClInclude Include="ICard.h">
       <Filter>Header Files\Cards</Filter>
     </ClInclude>
+    <ClInclude Include="CardManager.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
     <ClInclude Include="CharacterCard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Cards</Filter>
     </ClInclude>
     <ClInclude Include="DistrictCard.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Cards</Filter>
+    </ClInclude>
+    <ClInclude Include="GameRunningState.h">
+      <Filter>Header Files\State\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameState.h">
+      <Filter>Header Files\State\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="LobbyState.h">
+      <Filter>Header Files\State\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="IRoundState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelectionState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="ArchitectState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="AssassinState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="BishopState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="KingState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicianState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="MerchantState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="ThiefState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="WarlordState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundFinishedState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
+    <ClInclude Include="FinishedState.h">
+      <Filter>Header Files\State\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,23 +194,59 @@
     <ClCompile Include="PlayerList.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="LobbyState.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
-    <ClCompile Include="IGameState.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
-    <ClCompile Include="GameRunningState.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
     <ClCompile Include="ICard.cpp">
       <Filter>Source Files\Cards</Filter>
     </ClCompile>
     <ClCompile Include="CharacterCard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Cards</Filter>
     </ClCompile>
     <ClCompile Include="DistrictCard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Cards</Filter>
+    </ClCompile>
+    <ClCompile Include="CardManager.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="GameRunningState.cpp">
+      <Filter>Source Files\State\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyState.cpp">
+      <Filter>Source Files\State\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="ArchitectState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="AssassinState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="BishopState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSelectionState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="MerchantState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicianState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="KingState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="ThiefState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="WarlordState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundFinishedState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
+    </ClCompile>
+    <ClCompile Include="FinishedState.cpp">
+      <Filter>Source Files\State\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="IRoundState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

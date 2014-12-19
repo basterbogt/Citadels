@@ -22,6 +22,9 @@ private:
 	shared_ptr<Socket> m_Socket;
 	shared_ptr<CardPile<CharacterCard>> m_CharacterCards;
 	shared_ptr<CardPile<DistrictCard>> m_DistrictCard;
+
+	bool ValidateAnswer(string input, vector<string> expectedAnswers);
+
 public:
 	Player(shared_ptr<Socket> socket);
 
@@ -33,7 +36,10 @@ public:
 	void SetName(string name);
 	void Send(string Message);
 	void AllowInput();
-	string GetLastInput();
+
+	string RequestInput(string question);
+	int RequestInput(string question, vector<string> expectedAnswers);
+	string GetPlayerInput();
 
 	virtual ~Player();
 };

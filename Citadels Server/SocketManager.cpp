@@ -42,7 +42,7 @@ void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function 
 	/* Tell the player he missed the train... return method (and thus end thread and close connection) */
 	
 	//If not in progress:
-	client->write("Let's wait untill all players are ready! To quit, type 'quit'.\n");
+	player->Send("Let's wait untill all players are ready! To quit, type 'quit'.\n");
 	player->SetName(name);
 
 	gm->GetPlayerList()->InsertPlayer(player);
@@ -54,7 +54,7 @@ void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function 
 			cerr << "client (" << client->get() << ") said: " << cmd << '\n';
 
 			if (cmd == "quit") {
-				client->write("Bye!\n");
+				player->Send("Bye!\n");
 				//client->write(socketexample::prompt);
 				break; // out of game loop, will end this thread and close connection
 			}
@@ -64,12 +64,12 @@ void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function 
 
 		}
 		catch (const exception& ex) {
-			client->write("ERROR: ");
-			client->write(ex.what());
-			client->write("\n");
+			player->Send("ERROR: ");
+			player->Send(ex.what());
+			player->Send("\n");
 		}
 		catch (...) {
-			client->write("ERROR: something went wrong during handling of your request. Sorry!\n");
+			player->Send("ERROR: something went wrong during handling of your request. Sorry!\n");
 		}
 	}
 }
