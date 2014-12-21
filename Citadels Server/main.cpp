@@ -5,8 +5,8 @@
 int main(int argc, const char * argv[])
 {
 	srand(time(0));
-	SocketManager* sm = new SocketManager();
-	delete sm;
+	 SocketManager::getInstance().start();
+//	delete sm;
     return 0;
 }
 

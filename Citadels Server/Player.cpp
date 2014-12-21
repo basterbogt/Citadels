@@ -1,9 +1,9 @@
 #include "Player.h"
-#include "SyncedQueue.h"
+//#include "SyncedQueue.h"
 #include <exception>
-
+#include "SocketManager.h"
 using std::exception;
-using namespace syncedQueue;
+
 
 Player::Player(shared_ptr<Socket> socket)
 {
@@ -87,7 +87,7 @@ string Player::GetPlayerInput()
 {
 	while (true) {
 		ClientCommand command;
-		queue.get(command); // will block here unless there still are command objects in the queue
+		SocketManager::getInstance().queue.get(command); // will block here unless there still are command objects in the queue
 		shared_ptr<Socket> client{ command.get_client() };
 		if (client) {
 			try {

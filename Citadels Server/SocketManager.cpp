@@ -8,10 +8,10 @@
 #include <exception>
 #include <memory>
 
-#include "SyncedQueue.h"
+//#include "SyncedQueue.h"
 
 using namespace std;
-using namespace syncedQueue;
+
 
 #include "Socket.h"
 #include "Sync_queue.h"
@@ -60,7 +60,7 @@ void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function 
 			}
 
 			ClientCommand command{ cmd, player, client };
-			queue.put(command);
+			SocketManager::getInstance().queue.put(command);
 
 		}
 		catch (const exception& ex) {
@@ -76,6 +76,31 @@ void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function 
 
 SocketManager::SocketManager()
 {
+	
+}
+
+
+SocketManager::~SocketManager()
+{
+
+}
+
+SocketManager & SocketManager::getInstance() {
+	static SocketManager instance;
+	return instance;
+}
+
+
+void SocketManager::getServerInformation(){
+	std::string ip;
+	const string textfile("config.txt");
+	// input file stream, opent textfile voor lezen
+	ifstream input_file(textfile);
+	input_file >> m_Port;
+
+}
+
+void SocketManager::start() {
 	getServerInformation();
 
 	std::shared_ptr < GameManager > gm{ new GameManager };
@@ -107,19 +132,4 @@ SocketManager::SocketManager()
 			cerr << ex.what() << ", resuming..." << '\n';
 		}
 	}
-}
-
-
-SocketManager::~SocketManager()
-{
-
-}
-
-void SocketManager::getServerInformation(){
-	std::string ip;
-	const string textfile("config.txt");
-	// input file stream, opent textfile voor lezen
-	ifstream input_file(textfile);
-	input_file >> m_Port;
-
 }

@@ -99,9 +99,6 @@
     <ClInclude Include="GameManager.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="SyncedQueue.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerList.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>

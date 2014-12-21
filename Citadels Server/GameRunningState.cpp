@@ -9,8 +9,7 @@ GameRunningState::GameRunningState()
 
 void GameRunningState::Handle(GameManager& gm){
 	
-	/*
-	int i = 0;
+
 
 	vector<string> answers;
 	answers.push_back("Barry");
@@ -18,10 +17,17 @@ void GameRunningState::Handle(GameManager& gm){
 	answers.push_back("Eric");
 	answers.push_back("Bert");
 
-	printf(gm.GetPlayerList()->GetPlayerByName("bas")->RequestInput("Hoe heet ik?", answers).c_str());
+	std::cout << gm.GetPlayerList()->GetPlayerByName("bas")->RequestInput("Hoe heet ik?", answers) << std::endl;
 
-	printf(gm.GetPlayerList()->GetPlayerByName("gijs")->RequestInput("Hoe heet ik?").c_str());
-	*/
+	vector<string> answers2;
+	answers2.push_back("Brt");
+	answers2.push_back("Gert");
+	answers2.push_back("Gik");
+	answers2.push_back("stapel");
+
+	std::cout << gm.GetPlayerList()->GetPlayerByName("gijs")->RequestInput("Hoe heet ik?", answers2) << std::endl;
+	
+
 	shared_ptr<CharacterSelectionState> currentRound{ new CharacterSelectionState };
 
 	while (true){
