@@ -21,9 +21,8 @@ public:
 
 	shared_ptr<T> At(int position){
 		shared_ptr<T> card{ nullptr };
-		if (position >= 0 && position < Size()){
-			card = m_Cards.at(position);
-		}
+		card = m_Cards.at(position);
+
 		return card;
 	}
 
@@ -45,10 +44,8 @@ public:
 
 	shared_ptr<T> Take(int position){
 		shared_ptr<T> card{ nullptr };
-		if (position > 0 && position < Size()){
-			card = m_Cards.at(position);
-			m_Cards.erase(m_Cards.begin() + position);
-		}
+		card = m_Cards.at(position);
+		m_Cards.erase(m_Cards.begin() + position);
 		return card;
 	}
 
