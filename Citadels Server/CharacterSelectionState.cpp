@@ -30,8 +30,11 @@ void CharacterSelectionState::Handle(IGameState& context, GameManager& gm){
 		}
 
 		vector<string> answers;
-		for (int i = 0; i < characterCardPile->Size(); i++){
-			answers.push_back(characterCardPile->At(i)->GetName());
+		int pileSize = characterCardPile->Size();
+		for (int i = 0; i < pileSize; i++){
+			shared_ptr<ICard> card = characterCardPile->At(i);
+
+			answers.push_back(card->GetName());
 		}
 		int result = currentPlayer->RequestInput("Which card would you like to keep?", answers);
 		currentPlayer->GetCharacterCardContainer()->Push_Back(characterCardPile->Take(result));

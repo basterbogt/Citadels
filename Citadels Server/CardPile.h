@@ -21,7 +21,7 @@ public:
 
 	shared_ptr<T> At(int position){
 		shared_ptr<T> card{ nullptr };
-		if (position > 0 && position < Size()){
+		if (position >= 0 && position < Size()){
 			card = m_Cards.at(position);
 		}
 		return card;
@@ -70,7 +70,7 @@ public:
 	vector<shared_ptr<T>> TakeCardPile();
 	void AddCardPile(vector<shared_ptr<T>>);
 
-	virtual ~CardPile();
+	virtual ~CardPile() {}
 };
 
 /*

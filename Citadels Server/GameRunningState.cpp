@@ -8,7 +8,7 @@ GameRunningState::GameRunningState()
 }
 
 void GameRunningState::Handle(GameManager& gm){
-	
+	/*
 
 
 	vector<string> answers;
@@ -25,7 +25,7 @@ void GameRunningState::Handle(GameManager& gm){
 	answers2.push_back("Gik");
 	answers2.push_back("stapel");
 
-	std::cout << gm.GetPlayerList()->GetPlayerByName("gijs")->RequestInput("Hoe heet ik?", answers2) << std::endl;
+	std::cout << gm.GetPlayerList()->GetPlayerByName("gijs")->RequestInput("Hoe heet ik?", answers2) << std::endl; */
 	
 
 	shared_ptr<CharacterSelectionState> currentRound{ new CharacterSelectionState };

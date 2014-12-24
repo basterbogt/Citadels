@@ -1,15 +1,15 @@
 #include "CardManager.h"
-
+#include "CardPile.h"
 CardManager::CardManager()
 {
-	/*
+	
 	m_DistrictCardPile = shared_ptr<CardPile<DistrictCard>> { new CardPile<DistrictCard> };
 	m_DistrictCardDiscardPile = shared_ptr<CardPile<DistrictCard>> { new CardPile<DistrictCard> };
 	m_CharacterCardPile = shared_ptr<CardPile<CharacterCard>> { new CardPile<CharacterCard> };
 	m_CharacterCardDiscardPile = shared_ptr<CardPile<CharacterCard>> { new CardPile<CharacterCard> };
 
 	//TODO: Create all cards
-
+	
 	shared_ptr<CharacterCard> Assassin{ new CharacterCard("Assassin", eCharacterCard::Assassin) };
 	shared_ptr<CharacterCard> Thief{ new CharacterCard("Thief", eCharacterCard::Thief) };
 	shared_ptr<CharacterCard> Magician{ new CharacterCard("Magician", eCharacterCard::Magician) };
@@ -27,7 +27,7 @@ CardManager::CardManager()
 	m_CharacterCardPile->Push_Back(Merchant);
 	m_CharacterCardPile->Push_Back(Architect);
 	m_CharacterCardPile->Push_Back(Warlord);
-	*/
+	
 }
 
 

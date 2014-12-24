@@ -15,10 +15,10 @@ Player::Player(shared_ptr<Socket> socket)
 
 
 shared_ptr<CardPile<CharacterCard>> Player::GetCharacterCardContainer(){
-	return nullptr;//TODO
+	return m_CharacterCards;//TODO
 }
 shared_ptr<CardPile<DistrictCard>> Player::GetDistrictCardContainer(){
-	return nullptr;//TODO
+	return m_DistrictCards;//TODO
 }
 bool Player::HasCharacterCard(eCharacterCard role){
 	bool found = false;

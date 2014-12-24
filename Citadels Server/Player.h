@@ -20,8 +20,8 @@ private:
 	string m_Name;
 	int m_GoldPieces{ 0 };
 	shared_ptr<Socket> m_Socket;
-	shared_ptr<CardPile<CharacterCard>> m_CharacterCards;
-	shared_ptr<CardPile<DistrictCard>> m_DistrictCard;
+	shared_ptr<CardPile<CharacterCard>> m_CharacterCards = shared_ptr<CardPile<CharacterCard>> { new CardPile<CharacterCard> };
+	shared_ptr<CardPile<DistrictCard>> m_DistrictCards = shared_ptr<CardPile<DistrictCard>> { new CardPile<DistrictCard> };
 
 	bool ValidateAnswer(string input, vector<string> expectedAnswers);
 
