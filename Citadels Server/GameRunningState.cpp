@@ -28,10 +28,9 @@ void GameRunningState::Handle(GameManager& gm){
 	std::cout << gm.GetPlayerList()->GetPlayerByName("gijs")->RequestInput("Hoe heet ik?", answers2) << std::endl; */
 	
 
-	shared_ptr<CharacterSelectionState> currentRound{ new CharacterSelectionState };
 
 	while (true){
-		currentRound->Handle(*this, gm);
+		m_CurrentRound->Handle(*this, gm);
 	}
 
 
@@ -40,4 +39,9 @@ void GameRunningState::Handle(GameManager& gm){
 
 GameRunningState::~GameRunningState()
 {
+}
+
+
+void GameRunningState::setState(shared_ptr<IRoundState> roundState) {
+	m_CurrentRound = roundState;
 }

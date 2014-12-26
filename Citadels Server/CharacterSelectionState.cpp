@@ -1,6 +1,6 @@
 #include "CharacterSelectionState.h"
 #include "GameManager.h"
-
+#include "GameRunningState.h"
 CharacterSelectionState::CharacterSelectionState()
 {
 }
@@ -41,6 +41,7 @@ void CharacterSelectionState::Handle(IGameState& context, GameManager& gm){
 
 		i++;
 	}
+
 }
 
 CharacterSelectionState::~CharacterSelectionState()
