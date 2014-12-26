@@ -5,7 +5,7 @@ class ArchitectState :
 {
 public:
 	ArchitectState();
-	void Handle(IGameState& context, GameManager& gm);
+	void Handle(GameRunningState& context, GameManager& gm);
 	~ArchitectState();
 };
 

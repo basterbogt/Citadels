@@ -6,7 +6,7 @@ AssassinState::AssassinState()
 {
 }
 
-void AssassinState::Handle(IGameState& context, GameManager& gm){
+void AssassinState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 
 	shared_ptr<Player> player = gm.GetPlayerList()->GetPlayerByRole(Assassin);
@@ -22,7 +22,9 @@ void AssassinState::Handle(IGameState& context, GameManager& gm){
 	// Since "Assassin" was not on our chacter list, the enum we need is answer + 1
 	gm.setKilled(eCharacterCard(result + 1));
 
-	player->Send("You killed the " + answers.at(result));
+	player->Send("You killed the " + answers.at(result) + "\n");
+
+
 
 
 }

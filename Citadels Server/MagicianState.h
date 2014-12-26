@@ -5,7 +5,7 @@ class MagicianState :
 {
 public:
 	MagicianState();
-	void Handle(IGameState& context, GameManager& gm);
+	void Handle(GameRunningState& context, GameManager& gm);
 	~MagicianState();
 };
 

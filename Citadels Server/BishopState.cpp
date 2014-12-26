@@ -5,7 +5,7 @@ BishopState::BishopState()
 {
 }
 
-void BishopState::Handle(IGameState& context, GameManager& gm){
+void BishopState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 

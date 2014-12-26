@@ -6,11 +6,12 @@ using std::shared_ptr;
 
 class GameManager;
 class IGameState;
+class GameRunningState;
 class IRoundState
 {
 public:
 	IRoundState(){}
-	void Handle(IGameState& context, GameManager& gm);
+	virtual void Handle(GameRunningState& context, GameManager& gm);
 	virtual ~IRoundState(){}
 };
 

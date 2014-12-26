@@ -5,7 +5,7 @@ ThiefState::ThiefState()
 {
 }
 
-void ThiefState::Handle(IGameState& context, GameManager& gm){
+void ThiefState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 

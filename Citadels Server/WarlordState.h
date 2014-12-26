@@ -5,7 +5,7 @@ class WarlordState :
 {
 public:
 	WarlordState();
-	void Handle(IGameState& context, GameManager& gm);
+	void Handle(GameRunningState& context, GameManager& gm);
 	~WarlordState();
 };
 

@@ -5,7 +5,7 @@ class KingState :
 {
 public:
 	KingState();
-	void Handle(IGameState& context, GameManager& gm);
+	void Handle(GameRunningState& context, GameManager& gm);
 	~KingState();
 };
 

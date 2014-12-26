@@ -15,7 +15,7 @@ RoundFinishedState::RoundFinishedState()
 	*/
 }
 
-void RoundFinishedState::Handle(IGameState& context, GameManager& gm){
+void RoundFinishedState::Handle(GameRunningState& context, GameManager& gm){
 
 }
 

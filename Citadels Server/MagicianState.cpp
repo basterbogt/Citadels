@@ -5,7 +5,7 @@ MagicianState::MagicianState()
 {
 }
 
-void MagicianState::Handle(IGameState& context, GameManager& gm){
+void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 

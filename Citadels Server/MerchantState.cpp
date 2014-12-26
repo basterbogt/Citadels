@@ -5,7 +5,7 @@ MerchantState::MerchantState()
 {
 }
 
-void MerchantState::Handle(IGameState& context, GameManager& gm){
+void MerchantState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 

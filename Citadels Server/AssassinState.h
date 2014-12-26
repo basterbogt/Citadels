@@ -5,7 +5,7 @@ class AssassinState :
 {
 public:
 	AssassinState();
-	void Handle(IGameState& context, GameManager& gm);
+	void Handle(GameRunningState& context, GameManager& gm);
 	~AssassinState();
 };
 

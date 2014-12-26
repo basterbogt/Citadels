@@ -5,7 +5,7 @@ KingState::KingState()
 {
 }
 
-void KingState::Handle(IGameState& context, GameManager& gm){
+void KingState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 

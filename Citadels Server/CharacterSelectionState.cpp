@@ -1,11 +1,13 @@
 #include "CharacterSelectionState.h"
 #include "GameManager.h"
 #include "GameRunningState.h"
+#include "AssassinState.h"
 CharacterSelectionState::CharacterSelectionState()
 {
+	printf("Character Selection State\n");
 }
 
-void CharacterSelectionState::Handle(IGameState& context, GameManager& gm){
+void CharacterSelectionState::Handle(GameRunningState& context, GameManager& gm){
 	gm.GetCardManager()->GetCharacterCardPile()->Shuffle();
 
 	gm.GetCardManager()->GetCharacterCardPile()->Pop();
@@ -13,7 +15,7 @@ void CharacterSelectionState::Handle(IGameState& context, GameManager& gm){
 	int AmountOfPlayers = gm.GetPlayerList()->Size();
 
 	int i = 0;
-	while (gm.GetCardManager()->GetCharacterCardPile()->Size() > 0){
+	while (gm.GetCardManager()->GetCharacterCardPile()->Size() > 1){
 
 		shared_ptr<Player> currentPlayer = gm.GetPlayerList()->GetPlayerAt(i % AmountOfPlayers);
 		shared_ptr<CardPile<CharacterCard>> characterCardPile = gm.GetCardManager()->GetCharacterCardPile();
@@ -41,6 +43,8 @@ void CharacterSelectionState::Handle(IGameState& context, GameManager& gm){
 
 		i++;
 	}
+
+	context.setState(shared_ptr < IRoundState > {new AssassinState});
 
 }
 

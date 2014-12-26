@@ -5,7 +5,7 @@ class CharacterSelectionState :
 {
 public:
 	CharacterSelectionState();
-	void Handle(IGameState& context, GameManager& gm);
+	void Handle(GameRunningState& context, GameManager& gm);
 	virtual ~CharacterSelectionState();
 };
 

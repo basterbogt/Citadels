@@ -6,7 +6,7 @@ ArchitectState::ArchitectState()
 
 }
 
-void ArchitectState::Handle(IGameState& context, GameManager& gm){
+void ArchitectState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 

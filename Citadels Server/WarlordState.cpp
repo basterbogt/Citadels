@@ -5,7 +5,7 @@ WarlordState::WarlordState()
 {
 }
 
-void WarlordState::Handle(IGameState& context, GameManager& gm){
+void WarlordState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 }
 
