@@ -44,5 +44,8 @@ public:
 	virtual ~Player();
 
 	void GiveGoldPieces(int amount);
+
+	int GetGoldPieces();
+	void SetGoldPieces(int amount);
 };
 

@@ -118,6 +118,14 @@ void Player::GiveGoldPieces(int amount) {
 	m_GoldPieces += amount;
 }
 
+void Player::SetGoldPieces(int amount) {
+	m_GoldPieces = amount;
+}
+
+int Player::GetGoldPieces() {
+	return m_GoldPieces;
+}
+
 Player::~Player()
 {
 }
