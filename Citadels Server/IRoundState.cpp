@@ -2,7 +2,9 @@
 #include "GameManager.h"
 
 void IRoundState::Handle(GameRunningState& context, GameManager& gm){
-	shared_ptr<Player> m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(currentRole());
+	eCharacterCard role = currentRole();
+
+	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(role);
 
 	if (m_CurrentPlayer == nullptr || gm.isKilled(currentRole())) {
 		return;
