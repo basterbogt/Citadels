@@ -1,7 +1,7 @@
 #include "AssassinState.h"
 #include "GameManager.h"
-
-
+#include "GameRunningState.h"
+#include "ThiefState.h"
 AssassinState::AssassinState()
 {
 }
@@ -13,6 +13,7 @@ void AssassinState::Handle(GameRunningState& context, GameManager& gm){
 
 	if (player.get() == nullptr) {
 		// switchen naar volgende state, want er is geen assassin
+		context.setState(unique_ptr < IRoundState > {new ThiefState});
 		return;
 	}
 
@@ -24,7 +25,7 @@ void AssassinState::Handle(GameRunningState& context, GameManager& gm){
 
 	player->Send("You killed the " + answers.at(result) + "\n");
 
-
+	context.setState(unique_ptr < IRoundState > {new ThiefState});
 
 
 }

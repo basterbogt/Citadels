@@ -6,6 +6,6 @@ class ThiefState :
 public:
 	ThiefState();
 	void Handle(GameRunningState& context, GameManager& gm);
-	~ThiefState();
+	virtual ~ThiefState();
 };
 
