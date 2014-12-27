@@ -7,6 +7,7 @@ class BishopState :
 public:
 	BishopState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	~BishopState();
 };
 

@@ -6,6 +6,7 @@ class MerchantState :
 public:
 	MerchantState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	~MerchantState();
 };
 

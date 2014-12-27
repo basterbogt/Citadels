@@ -38,7 +38,7 @@ string Player::GetName(){
 }
 
 void Player::Send(string message){
-	m_Socket->write(message);
+	m_Socket->write(message + "\n");
 }
 
 void Player::AllowInput(){
@@ -114,6 +114,9 @@ string Player::GetPlayerInput()
 
 }
 
+void Player::GiveGoldPieces(int amount) {
+	m_GoldPieces += amount;
+}
 
 Player::~Player()
 {

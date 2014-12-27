@@ -6,6 +6,7 @@ class KingState :
 public:
 	KingState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	~KingState();
 };
 

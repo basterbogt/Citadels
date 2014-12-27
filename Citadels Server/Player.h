@@ -42,5 +42,7 @@ public:
 	string GetPlayerInput();
 
 	virtual ~Player();
+
+	void GiveGoldPieces(int amount);
 };
 

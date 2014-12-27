@@ -6,6 +6,7 @@ class WarlordState :
 public:
 	WarlordState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	~WarlordState();
 };
 

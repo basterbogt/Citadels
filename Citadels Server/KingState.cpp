@@ -12,3 +12,7 @@ void KingState::Handle(GameRunningState& context, GameManager& gm){
 KingState::~KingState()
 {
 }
+
+eCharacterCard KingState::currentRole() {
+	return King;
+}

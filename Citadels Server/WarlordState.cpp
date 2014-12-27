@@ -12,3 +12,7 @@ void WarlordState::Handle(GameRunningState& context, GameManager& gm){
 WarlordState::~WarlordState()
 {
 }
+
+eCharacterCard WarlordState::currentRole() {
+	return Warlord;
+}

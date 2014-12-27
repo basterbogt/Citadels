@@ -12,3 +12,7 @@ void MerchantState::Handle(GameRunningState& context, GameManager& gm){
 MerchantState::~MerchantState()
 {
 }
+
+eCharacterCard MerchantState::currentRole() {
+	return Merchant;
+}

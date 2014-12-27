@@ -6,6 +6,7 @@ class AssassinState :
 public:
 	AssassinState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	~AssassinState();
 };
 

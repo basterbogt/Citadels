@@ -6,6 +6,7 @@ class ThiefState :
 public:
 	ThiefState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	virtual ~ThiefState();
 };
 

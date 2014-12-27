@@ -7,5 +7,7 @@ public:
 	RoundFinishedState();
 	void Handle(GameRunningState& context, GameManager& gm);
 	~RoundFinishedState();
+
+	eCharacterCard currentRole() { return eCharacterCard(0); }
 };
 

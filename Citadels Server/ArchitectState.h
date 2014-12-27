@@ -6,6 +6,7 @@ class ArchitectState :
 public:
 	ArchitectState();
 	void Handle(GameRunningState& context, GameManager& gm);
+	eCharacterCard currentRole();
 	~ArchitectState();
 };
 

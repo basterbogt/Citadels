@@ -12,3 +12,7 @@ void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 MagicianState::~MagicianState()
 {
 }
+
+eCharacterCard MagicianState::currentRole() {
+	return Magician;
+}
