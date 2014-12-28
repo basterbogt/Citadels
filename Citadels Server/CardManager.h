@@ -2,6 +2,7 @@
 #include "CardPile.h"
 #include "DistrictCard.h"
 #include "CharacterCard.h"
+#include "CardReader.h"
 
 class CardManager
 {

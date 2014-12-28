@@ -162,6 +162,9 @@
     <ClInclude Include="FinishedState.h">
       <Filter>Header Files\State\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="CardReader.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -245,5 +248,13 @@
     <ClCompile Include="IRoundState.cpp">
       <Filter>Source Files\State\RoundState</Filter>
     </ClCompile>
+    <ClCompile Include="CardReader.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="district_cards.csv">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

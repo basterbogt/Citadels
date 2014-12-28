@@ -17,6 +17,7 @@ void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 	switch (result) {
 	case 0:
 	{
+		// Tja, je bent ook dom als je met jezelf gaat switchen... >.<
 		vector<string> playerList;
 		for (int i{ 0 }; i < gm.GetPlayerList()->Size(); i++) {
 			playerList.push_back(gm.GetPlayerList()->GetPlayerAt(i)->GetName());

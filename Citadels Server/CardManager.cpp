@@ -27,6 +27,11 @@ CardManager::CardManager()
 	m_CharacterCardPile->Push_Back(Merchant);
 	m_CharacterCardPile->Push_Back(Architect);
 	m_CharacterCardPile->Push_Back(Warlord);
+
+	CardReader reader("district_cards.csv");
+	reader.parse();
+	m_DistrictCardDiscardPile->AddCardPile(reader.getCards());
+
 	
 }
 

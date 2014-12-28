@@ -82,6 +82,7 @@
     <ClInclude Include="BishopState.h" />
     <ClInclude Include="CardManager.h" />
     <ClInclude Include="CardPile.h" />
+    <ClInclude Include="CardReader.h" />
     <ClInclude Include="CharacterCard.h" />
     <ClInclude Include="CharacterSelectionState.h" />
     <ClInclude Include="ClientCommand.h" />
@@ -115,6 +116,7 @@
     <ClCompile Include="AssassinState.cpp" />
     <ClCompile Include="BishopState.cpp" />
     <ClCompile Include="CardManager.cpp" />
+    <ClCompile Include="CardReader.cpp" />
     <ClCompile Include="CharacterCard.cpp" />
     <ClCompile Include="CharacterSelectionState.cpp" />
     <ClCompile Include="DistrictCard.cpp" />
@@ -141,6 +143,9 @@
     <ClCompile Include="ThiefState.cpp" />
     <ClCompile Include="throw.cpp" />
     <ClCompile Include="WarlordState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="district_cards.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
