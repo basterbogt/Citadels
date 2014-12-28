@@ -3,6 +3,7 @@
 class MagicianState :
 	public IRoundState
 {
+
 public:
 	MagicianState();
 	void Handle(GameRunningState& context, GameManager& gm);

@@ -64,8 +64,14 @@ public:
 	vector<shared_ptr<T>> GetCardPile(){
 		return m_Cards;
 	}
-	vector<shared_ptr<T>> TakeCardPile();
-	void AddCardPile(vector<shared_ptr<T>>);
+	vector<shared_ptr<T>> TakeCardPile() {
+		vector<shared_ptr<T>> tmp = m_Cards;
+		m_Cards.clear();
+		return tmp;
+	}
+	void AddCardPile(vector<shared_ptr<T>> pile) {
+		m_Cards = pile;
+	}
 
 	virtual ~CardPile() {}
 };
