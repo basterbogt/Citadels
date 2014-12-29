@@ -52,9 +52,9 @@ void PlayerList::SendAll(string message){
 
 void PlayerList::SendAllBut(shared_ptr<Player> player, string message){
 	for (int i = 0; i < m_PlayerList.size(); i++){
-		shared_ptr<Player> player = m_PlayerList.at(i);
-		if (player != player){
-			player->Send(message);
+		shared_ptr<Player> playerCompare = m_PlayerList.at(i);
+		if (playerCompare.get() != player.get()){
+			playerCompare->Send(message);
 		}
 	}
 }

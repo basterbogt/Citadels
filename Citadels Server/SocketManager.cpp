@@ -42,7 +42,7 @@ void handle_client(Socket* socket, shared_ptr<GameManager> gm) // this function 
 	/* Tell the player he missed the train... return method (and thus end thread and close connection) */
 	
 	//If not in progress:
-	player->Send("Let's wait untill all players are ready! To quit, type 'quit'.\n");
+	player->Send("\nLet's wait untill all players are ready! To quit, type 'quit'.\n");
 	player->SetName(name);
 
 	gm->GetPlayerList()->InsertPlayer(player);

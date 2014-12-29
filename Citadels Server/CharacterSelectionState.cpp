@@ -27,7 +27,7 @@ void CharacterSelectionState::Handle(GameRunningState& context, GameManager& gm)
 			for (int i = 0; i < characterCardPile->Size(); i++){
 				answers.push_back(characterCardPile->At(i)->GetName());
 			}
-			int result = currentPlayer->RequestInput("Which card would you like to discard?", answers);
+			int result = currentPlayer->RequestInput("\nWhich card would you like to discard?", answers);
 			gm.GetCardManager()->GetCharacterCardDiscardPile()->Push_Back(characterCardPile->Take(result));
 		}
 
@@ -40,7 +40,7 @@ void CharacterSelectionState::Handle(GameRunningState& context, GameManager& gm)
 
 				answers.push_back(card->GetName());
 			}
-			result = currentPlayer->RequestInput("Which card would you like to keep?", answers);
+			result = currentPlayer->RequestInput("\nWhich card would you like to keep?", answers);
 		}
 		else{
 			//Maybe a message, that you automatically got the last card.. but w/e, doubt its needed

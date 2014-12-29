@@ -4,8 +4,8 @@
 void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(currentRole());
 	
-	m_CurrentPlayer->Send(gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:");
-	gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...");
+	m_CurrentPlayer->Send(gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:\n");
+	gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...\n");
 
 
 	if (m_CurrentPlayer == nullptr || gm.isKilled(currentRole())) {
