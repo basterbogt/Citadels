@@ -42,6 +42,13 @@ void PlayerList::RemovePlayer(shared_ptr<Player> player){
 	}
 
 }
+
+void PlayerList::SendAll(string message){
+	for (int i = 0; i < m_PlayerList.size(); i++){
+		m_PlayerList.at(i)->Send(message);
+	}
+}
+
 int PlayerList::Size(){
 	return m_PlayerList.size();
 }

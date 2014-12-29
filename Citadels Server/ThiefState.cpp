@@ -9,6 +9,8 @@ ThiefState::ThiefState()
 void ThiefState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 
+	gm.GetPlayerList()->SendAll("Thief's turn:");
+
 	if (m_CurrentPlayer.get() == nullptr || gm.isKilled(Thief)) {
 		// switchen naar volgende state, want er is geen thief
 		context.setState(unique_ptr < IRoundState > {new MagicianState});

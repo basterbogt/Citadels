@@ -10,7 +10,7 @@ CharacterSelectionState::CharacterSelectionState()
 void CharacterSelectionState::Handle(GameRunningState& context, GameManager& gm){
 	gm.GetCardManager()->GetCharacterCardPile()->Shuffle();
 
-	gm.GetCardManager()->GetCharacterCardPile()->Pop();
+	//gm.GetCardManager()->GetCharacterCardPile()->Pop();
 
 	int AmountOfPlayers = gm.GetPlayerList()->Size();
 
@@ -33,14 +33,19 @@ void CharacterSelectionState::Handle(GameRunningState& context, GameManager& gm)
 
 		vector<string> answers;
 		int pileSize = characterCardPile->Size();
-		for (int i = 0; i < pileSize; i++){
-			shared_ptr<ICard> card = characterCardPile->At(i);
+		int result = 0;
+		if (pileSize > 1){
+			for (int i = 0; i < pileSize; i++){
+				shared_ptr<ICard> card = characterCardPile->At(i);
 
-			answers.push_back(card->GetName());
+				answers.push_back(card->GetName());
+			}
+			result = currentPlayer->RequestInput("Which card would you like to keep?", answers);
 		}
-		int result = currentPlayer->RequestInput("Which card would you like to keep?", answers);
+		else{
+			//Maybe a message, that you automatically got the last card.. but w/e, doubt its needed
+		}
 		currentPlayer->GetCharacterCardContainer()->Push_Back(characterCardPile->Take(result));
-
 		i++;
 	}
 

@@ -9,10 +9,11 @@ AssassinState::AssassinState()
 void AssassinState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
 
-	
+	gm.GetPlayerList()->SendAll("Assassin's turn:");
 
 	if (m_CurrentPlayer.get() == nullptr) {
 		// switchen naar volgende state, want er is geen assassin
+		gm.GetPlayerList()->SendAll("Hmm... nothing happend.");
 		context.setState(unique_ptr < IRoundState > {new ThiefState});
 		return;
 	}
@@ -25,6 +26,7 @@ void AssassinState::Handle(GameRunningState& context, GameManager& gm){
 
 	m_CurrentPlayer->Send("You killed the " + answers.at(result) + "\n");
 
+	gm.GetPlayerList()->SendAll("And.. Assassin's turn is over!\n");
 	context.setState(unique_ptr < IRoundState > {new ThiefState});
 
 
