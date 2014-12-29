@@ -2,11 +2,14 @@
 #include "GameManager.h"
 
 void IRoundState::Handle(GameRunningState& context, GameManager& gm){
-	eCharacterCard role = currentRole();
+	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(currentRole());
+	
+	m_CurrentPlayer->Send(gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:");
+	gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...");
 
-	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(role);
 
 	if (m_CurrentPlayer == nullptr || gm.isKilled(currentRole())) {
+		gm.GetPlayerList()->SendAll("Hmm... nothing happend.");
 		return;
 	}
 
@@ -56,7 +59,7 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 				m_CurrentPlayer->Send("One card left, you picked a " + card1->GetName());
 			}
 			else {
-				m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. ggwp");
+				m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. #getRekt");
 			}
 
 			break;

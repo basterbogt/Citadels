@@ -49,6 +49,16 @@ void PlayerList::SendAll(string message){
 	}
 }
 
+
+void PlayerList::SendAllBut(shared_ptr<Player> player, string message){
+	for (int i = 0; i < m_PlayerList.size(); i++){
+		shared_ptr<Player> player = m_PlayerList.at(i);
+		if (player != player){
+			player->Send(message);
+		}
+	}
+}
+
 int PlayerList::Size(){
 	return m_PlayerList.size();
 }

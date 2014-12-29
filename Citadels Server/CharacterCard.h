@@ -11,6 +11,8 @@ private:
 public:
 	CharacterCard(string name, eCharacterCard characterEnum);
 	eCharacterCard GetEnum();
+	eCharacterCard GetEnumStringValue();
 	virtual ~CharacterCard();
 };
+
 
