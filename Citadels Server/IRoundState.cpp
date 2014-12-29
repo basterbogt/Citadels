@@ -32,7 +32,33 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		}
 		case 1:
 		{
-			m_CurrentPlayer->Send("Sorry, not implemented yet. You receive nothing. ggwp");
+			// rekening houden met een lege stapel!
+			shared_ptr<CardPile<DistrictCard>> cp = gm.GetCardManager()->GetDistrictCardDiscardPile();
+
+			if (cp->Size() >= 2) {
+				vector < shared_ptr<DistrictCard> > choices {cp->Pop(), cp->Pop()};
+
+				vector<string> answers = { choices.at(0)->GetName(), choices.at(1)->GetName() };
+				int result = m_CurrentPlayer->RequestInput("Which card would you like to keep?", answers);
+
+				int leftOver = 1 - result;
+
+				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(choices.at(result));
+				cp->Push_Back(choices.at(leftOver));
+
+				m_CurrentPlayer->Send("You picked a " + choices.at(result)->GetName());
+
+			
+			}
+			else if (cp->Size() == 1) {
+				shared_ptr<DistrictCard> card1 = cp->Pop();
+				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card1);
+				m_CurrentPlayer->Send("One card left, you picked a " + card1->GetName());
+			}
+			else {
+				m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. ggwp");
+			}
+
 			break;
 		}
 	}
