@@ -14,5 +14,8 @@ protected:
 public:
 	DistrictCard(string name, int cost, int points, CardColour colour);
 	virtual ~DistrictCard();
+
+	int getCost() { return m_Cost; };
+
 };
 

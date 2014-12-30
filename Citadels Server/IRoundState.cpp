@@ -63,6 +63,41 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		}
 	}
 
+	if (m_CurrentPlayer->GetDistrictCardContainer()->Size() > 0) {
+		int wallet = m_CurrentPlayer->GetGoldPieces();
+
+		int result = m_CurrentPlayer->RequestInput("Would you like to build something?", vector < string > {"Yes", "No"});
+
+		if (result == 1) {
+			return;
+		}
+
+		vector<string> answers;
+
+		for (int i{ 0 }; m_CurrentPlayer->GetDistrictCardContainer()->Size(); i++) {
+			
+			shared_ptr<DistrictCard> card = m_CurrentPlayer->GetDistrictCardContainer()->At(i);
+
+			answers.push_back(card->GetName() + " - Price: " + std::to_string(card->getCost()));
+
+		}
+
+		
+		int result2 = m_CurrentPlayer->RequestInput("What do you want to build? [wallet: " + std::to_string(wallet) + "gp]", answers);
+		shared_ptr<DistrictCard> cardToUse = m_CurrentPlayer->GetDistrictCardContainer()->Take(result2);
+
+		if (cardToUse->getCost() > wallet) {
+			m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(cardToUse);
+			m_CurrentPlayer->Send("Whoops, you do not have enough money!");
+		}
+		else {
+			m_CurrentPlayer->SetGoldPieces(m_CurrentPlayer->GetGoldPieces() - cardToUse->getCost());
+			m_CurrentPlayer->GetCityCardContainer()->Push_Back(cardToUse);
+			m_CurrentPlayer->Send(cardToUse->GetName() + " has been added to your city!");
+		}
+
+	}
+
 	
 	//IRoundState::Handle(context, gm);
 }

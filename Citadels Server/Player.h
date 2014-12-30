@@ -22,6 +22,7 @@ private:
 	shared_ptr<Socket> m_Socket;
 	shared_ptr<CardPile<CharacterCard>> m_CharacterCards = shared_ptr<CardPile<CharacterCard>> { new CardPile<CharacterCard> };
 	shared_ptr<CardPile<DistrictCard>> m_DistrictCards = shared_ptr<CardPile<DistrictCard>> { new CardPile<DistrictCard> };
+	shared_ptr<CardPile<DistrictCard>> m_City = shared_ptr<CardPile<DistrictCard>> { new CardPile<DistrictCard> };
 
 	bool ValidateAnswer(string input, vector<string> expectedAnswers);
 
@@ -30,6 +31,7 @@ public:
 
 	shared_ptr<CardPile<CharacterCard>> GetCharacterCardContainer();
 	shared_ptr<CardPile<DistrictCard>> GetDistrictCardContainer();
+	shared_ptr<CardPile<DistrictCard>> GetCityCardContainer();
 	bool HasCharacterCard(eCharacterCard role);
 
 	string GetName();

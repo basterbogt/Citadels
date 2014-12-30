@@ -20,6 +20,12 @@ shared_ptr<CardPile<CharacterCard>> Player::GetCharacterCardContainer(){
 shared_ptr<CardPile<DistrictCard>> Player::GetDistrictCardContainer(){
 	return m_DistrictCards;//TODO
 }
+
+shared_ptr<CardPile<DistrictCard>> Player::GetCityCardContainer() {
+	return m_City;
+}
+
+
 bool Player::HasCharacterCard(eCharacterCard role){
 	bool found = false;
 	for (int i = 0; i < m_CharacterCards->Size() && !found; i++){
