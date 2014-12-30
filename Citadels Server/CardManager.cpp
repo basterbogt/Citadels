@@ -8,6 +8,16 @@ CardManager::CardManager()
 	m_CharacterCardPile = shared_ptr<CardPile<CharacterCard>> { new CardPile<CharacterCard> };
 	m_CharacterCardDiscardPile = shared_ptr<CardPile<CharacterCard>> { new CardPile<CharacterCard> };
 
+
+	m_CharacterCardEnumToStringConversionMap[Assassin] = "Assassin";
+	m_CharacterCardEnumToStringConversionMap[Thief] = "Thief";
+	m_CharacterCardEnumToStringConversionMap[Magician] = "Magician";
+	m_CharacterCardEnumToStringConversionMap[King] = "King";
+	m_CharacterCardEnumToStringConversionMap[Bishop] = "Bishop";
+	m_CharacterCardEnumToStringConversionMap[Merchant] = "Merchant";
+	m_CharacterCardEnumToStringConversionMap[Architect] = "Architect";
+	m_CharacterCardEnumToStringConversionMap[Warlord] = "Warlord";
+
 	//TODO: Create all cards
 	
 	shared_ptr<CharacterCard> Assassin{ new CharacterCard("Assassin", eCharacterCard::Assassin) };
@@ -47,6 +57,10 @@ shared_ptr<CardPile<CharacterCard>> CardManager::GetCharacterCardPile(){
 }
 shared_ptr<CardPile<CharacterCard>> CardManager::GetCharacterCardDiscardPile(){
 	return m_CharacterCardDiscardPile;
+}
+
+std::string CardManager::CharacterEnumToString(eCharacterCard e){
+	return m_CharacterCardEnumToStringConversionMap[e];
 }
 
 CardManager::~CardManager()

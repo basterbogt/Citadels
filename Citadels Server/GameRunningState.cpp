@@ -9,6 +9,9 @@ GameRunningState::GameRunningState()
 }
 
 void GameRunningState::Handle(GameManager& gm){
+
+	gm.GetPlayerList()->SendAll("Everyone seems ready! Happy Citadels Game, and may the odds be ever in your favor!");
+
 	/*
 
 

@@ -21,6 +21,8 @@ public:
 	shared_ptr<Player> GetPlayerByName(string name);
 	void InsertPlayer(shared_ptr<Player> player);
 	void RemovePlayer(shared_ptr<Player> player);
+	void SendAll(string message);
+	void SendAllBut(shared_ptr<Player> player, string message);
 	int Size();
 
 	virtual ~PlayerList();

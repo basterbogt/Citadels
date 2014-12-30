@@ -9,8 +9,7 @@ MagicianState::MagicianState()
 
 void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
-
-
+	
 	vector<string> answers = { "Switch Carts with player", "Dispose carts & get district cards" };
 	int result = m_CurrentPlayer->RequestInput("Make a choice, Magician:", answers);
 
