@@ -77,7 +77,7 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 
 		vector<string> answers;
 
-		for (int i{ 0 }; m_CurrentPlayer->GetDistrictCardContainer()->Size(); i++) {
+		for (int i{ 0 };  i < m_CurrentPlayer->GetDistrictCardContainer()->Size(); i++) {
 			
 			shared_ptr<DistrictCard> card = m_CurrentPlayer->GetDistrictCardContainer()->At(i);
 
