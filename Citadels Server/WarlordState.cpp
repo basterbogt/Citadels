@@ -1,12 +1,61 @@
 #include "WarlordState.h"
-
-
+#include "GameManager.h"
+#include "GameRunningState.h"
+#include "RoundFinishedState.h"
 WarlordState::WarlordState()
 {
 }
 
 void WarlordState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
+	m_CurrentPlayer->GiveGPForCards(red);
+	
+	vector<string> victims;
+	for (int i{ 0 }; i < gm.GetPlayerList()->Size(); i++) {
+		victims.push_back(gm.GetPlayerList()->GetPlayerAt(i)->GetName());
+	}
+
+	int result = m_CurrentPlayer->RequestInput("Which player's city would you like to attack?", victims);
+
+	shared_ptr<Player> choosenVictim = gm.GetPlayerList()->GetPlayerAt(result);
+
+	if (choosenVictim.get() == m_CurrentPlayer.get()) {
+		m_CurrentPlayer->Send("It might be wise not to attack your own city, don't you think?");
+		return;
+	}
+
+	if (choosenVictim->HasCharacterCard(Bishop)) {
+		m_CurrentPlayer->Send("You should not attack bishops! ");
+		return;
+	}
+
+	vector<string> destroyables;
+
+	for (int i{ 0 }; i < choosenVictim->GetCityCardContainer()->Size(); i++) {
+		shared_ptr<DistrictCard> card = choosenVictim->GetCityCardContainer()->At(i);
+
+		destroyables.push_back(card->GetName() + " costs to destroy: " + std::to_string(card->getCost() - 1));
+	}
+
+	int choice = m_CurrentPlayer->RequestInput("Which building would you like to destroy? [my wallet: " + std::to_string(m_CurrentPlayer->GetGoldPieces()) + "]", destroyables);
+
+	shared_ptr<DistrictCard> removedCard = choosenVictim->GetCityCardContainer()->Take(choice);
+
+	if (removedCard->getCost() - 1 > m_CurrentPlayer->GetGoldPieces()) {
+		m_CurrentPlayer->Send("You are not wealthy enough to do this!");
+		choosenVictim->GetCityCardContainer()->Push_Back(removedCard);
+	}
+	else {
+		gm.GetCardManager()->GetDistrictCardDiscardPile()->Push_Back(removedCard);
+		choosenVictim->Send("You building " + removedCard->GetName() + " has been destroyed by " + m_CurrentPlayer->GetName());
+		m_CurrentPlayer->SetGoldPieces(m_CurrentPlayer->GetGoldPieces() - (removedCard->getCost() - 1));
+		m_CurrentPlayer->Send("Building succesfully destroyed!");
+	}
+
+	context.setState(unique_ptr < IRoundState > {new RoundFinishedState});
+
+	
+
 }
 
 WarlordState::~WarlordState()

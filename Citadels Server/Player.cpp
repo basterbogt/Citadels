@@ -132,6 +132,24 @@ int Player::GetGoldPieces() {
 	return m_GoldPieces;
 }
 
+void Player::GiveGPForCards(CardColour colour) {
+
+	int cardCount{ 0 };
+
+	for (int i{ 0 }; i < GetCityCardContainer()->Size(); i++) {
+		if (GetCityCardContainer()->At(i)->GetColour() == colour) {
+			cardCount++;
+		}
+	}
+
+	if (cardCount > 0) {
+		Send("You have received additional goldpieces because of your cards! Bonus GP: " + std::to_string(cardCount));
+		GiveGoldPieces(cardCount);
+
+	}
+}
+
 Player::~Player()
 {
 }
+

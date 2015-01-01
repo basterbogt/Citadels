@@ -4,7 +4,7 @@
 #include "CharacterCard.h"
 #include "Player.h"
 using std::shared_ptr;
-
+using std::unique_ptr;
 class GameManager;
 class IGameState;
 class GameRunningState;

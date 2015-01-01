@@ -17,5 +17,7 @@ public:
 
 	int getCost() { return m_Cost; };
 
+	CardColour GetColour() { return m_Colour; };
+
 };
 

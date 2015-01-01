@@ -49,5 +49,7 @@ public:
 
 	int GetGoldPieces();
 	void SetGoldPieces(int amount);
+
+	void GiveGPForCards(CardColour colour);
 };
 
