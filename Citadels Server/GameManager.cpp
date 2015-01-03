@@ -1,7 +1,7 @@
 #include "GameManager.h"
 #include <exception>
 #include "LobbyState.h"
-
+#include "FinishedState.h"
 using std::exception;
 using std::cerr;
 
@@ -17,10 +17,12 @@ GameManager::GameManager()
 
 void GameManager::GameLoop()
 {
-	while (true)
+	while (!IsGameFinished())
 	{
 		m_CurrentGameState->Handle(*this);
 	}
+
+	m_CurrentGameState = unique_ptr < IGameState > {new FinishedState};
 }
 
 

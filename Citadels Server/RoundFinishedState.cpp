@@ -36,9 +36,22 @@ void RoundFinishedState::Handle(GameRunningState& context, GameManager& gm){
 	}
 
 
-	// dit niet doen als de game gefinished is, obviously!
-	context.setState(shared_ptr < IRoundState > { new CharacterSelectionState});
+	// Has the game been finished?
+	for (int i{ 0 }; i < gm.GetPlayerList()->Size(); i++) {
+		shared_ptr<Player> player = gm.GetPlayerList()->GetPlayerAt(i);
 
+		if (player->GetDistrictCardContainer()->Size() >= 8) {
+			gm.MarkGameAsFinished();
+			break;
+		}
+	}
+
+
+	if (!gm.IsGameFinished()) {
+		// dit niet doen als de game gefinished is, obviously!
+		context.setState(shared_ptr < IRoundState > { new CharacterSelectionState});
+
+	}
 
 }
 
