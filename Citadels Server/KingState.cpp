@@ -8,7 +8,7 @@ KingState::KingState()
 
 void KingState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
-	m_CurrentPlayer->Send("Not implemented yet!");
+	m_CurrentPlayer->GiveGPForCards(yellow);
 	context.setState(unique_ptr < IRoundState > {new BishopState});
 }
 

@@ -1,6 +1,6 @@
 #include "MerchantState.h"
-
-
+#include "GameRunningState.h"
+#include "ArchitectState.h"
 MerchantState::MerchantState()
 {
 }
@@ -10,8 +10,7 @@ void MerchantState::Handle(GameRunningState& context, GameManager& gm){
 	m_CurrentPlayer->GiveGoldPieces(1);
 	m_CurrentPlayer->GiveGPForCards(green);
 
-	m_CurrentPlayer->Send("Builder state not implemented yet!");
-	//context.setState(unique_ptr < IRoundState > {new BuilderState});
+	context.setState(unique_ptr < IRoundState > {new ArchitectState});
 
 }
 
