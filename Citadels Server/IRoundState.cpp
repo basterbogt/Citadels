@@ -38,69 +38,80 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 			// rekening houden met een lege stapel!
 			shared_ptr<CardPile<DistrictCard>> cp = gm.GetCardManager()->GetDistrictCardDiscardPile();
 
-			if (cp->Size() >= 2) {
-				vector < shared_ptr<DistrictCard> > choices {cp->Pop(), cp->Pop()};
-
-				vector<string> answers = { choices.at(0)->GetName(), choices.at(1)->GetName() };
-				int result = m_CurrentPlayer->RequestInput("Which card would you like to keep?", answers);
-
-				int leftOver = 1 - result;
-
-				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(choices.at(result));
-				cp->Push_Back(choices.at(leftOver));
-
-				m_CurrentPlayer->Send("You picked a " + choices.at(result)->GetName());
-
-			
-			}
-			else if (cp->Size() == 1) {
-				shared_ptr<DistrictCard> card1 = cp->Pop();
-				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card1);
-				m_CurrentPlayer->Send("One card left, you picked a " + card1->GetName());
-			}
-			else {
-				m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. #getRekt");
-			}
+			PickDistrictCard(cp);
 
 			break;
 		}
 	}
 
 	if (m_CurrentPlayer->GetDistrictCardContainer()->Size() > 0) {
-		int wallet = m_CurrentPlayer->GetGoldPieces();
-
+	
 		int result = m_CurrentPlayer->RequestInput("Would you like to build something?", vector < string > {"Yes", "No"});
 
 		if (result == 1) {
 			return;
 		}
 
-		vector<string> answers;
-
-		for (int i{ 0 };  i < m_CurrentPlayer->GetDistrictCardContainer()->Size(); i++) {
-			
-			shared_ptr<DistrictCard> card = m_CurrentPlayer->GetDistrictCardContainer()->At(i);
-
-			answers.push_back(card->GetName() + " - Price: " + std::to_string(card->getCost()));
-
-		}
-
-		
-		int result2 = m_CurrentPlayer->RequestInput("What do you want to build? [wallet: " + std::to_string(wallet) + "gp]", answers);
-		shared_ptr<DistrictCard> cardToUse = m_CurrentPlayer->GetDistrictCardContainer()->Take(result2);
-
-		if (cardToUse->getCost() > wallet) {
-			m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(cardToUse);
-			m_CurrentPlayer->Send("Whoops, you do not have enough money!");
-		}
-		else {
-			m_CurrentPlayer->SetGoldPieces(m_CurrentPlayer->GetGoldPieces() - cardToUse->getCost());
-			m_CurrentPlayer->GetCityCardContainer()->Push_Back(cardToUse);
-			m_CurrentPlayer->Send(cardToUse->GetName() + " has been added to your city!");
-		}
+		BuildSomething();
 
 	}
 
 	
 	//IRoundState::Handle(context, gm);
+}
+
+
+void IRoundState::PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp) {
+
+	if (cp->Size() >= 2) {
+		vector < shared_ptr<DistrictCard> > choices{ cp->Pop(), cp->Pop() };
+
+		vector<string> answers = { choices.at(0)->GetName(), choices.at(1)->GetName() };
+		int result = m_CurrentPlayer->RequestInput("Which card would you like to keep?", answers);
+
+		int leftOver = 1 - result;
+
+		m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(choices.at(result));
+		cp->Push_Back(choices.at(leftOver));
+
+		m_CurrentPlayer->Send("You picked a " + choices.at(result)->GetName());
+
+
+	}
+	else if (cp->Size() == 1) {
+		shared_ptr<DistrictCard> card1 = cp->Pop();
+		m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card1);
+		m_CurrentPlayer->Send("One card left, you picked a " + card1->GetName());
+	}
+	else {
+		m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. #getRekt");
+	}
+}
+
+void IRoundState::BuildSomething() {
+	int wallet = m_CurrentPlayer->GetGoldPieces();
+
+	vector<string> answers;
+
+	for (int i{ 0 }; i < m_CurrentPlayer->GetDistrictCardContainer()->Size(); i++) {
+
+		shared_ptr<DistrictCard> card = m_CurrentPlayer->GetDistrictCardContainer()->At(i);
+
+		answers.push_back(card->GetName() + " - Price: " + std::to_string(card->getCost()));
+
+	}
+
+
+	int result2 = m_CurrentPlayer->RequestInput("What do you want to build? [wallet: " + std::to_string(wallet) + "gp]", answers);
+	shared_ptr<DistrictCard> cardToUse = m_CurrentPlayer->GetDistrictCardContainer()->Take(result2);
+
+	if (cardToUse->getCost() > wallet) {
+		m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(cardToUse);
+		m_CurrentPlayer->Send("Whoops, you do not have enough money!");
+	}
+	else {
+		m_CurrentPlayer->SetGoldPieces(m_CurrentPlayer->GetGoldPieces() - cardToUse->getCost());
+		m_CurrentPlayer->GetCityCardContainer()->Push_Back(cardToUse);
+		m_CurrentPlayer->Send(cardToUse->GetName() + " has been added to your city!");
+	}
 }

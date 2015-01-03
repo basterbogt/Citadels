@@ -12,6 +12,8 @@ class IRoundState
 {
 protected:
 	shared_ptr<Player> m_CurrentPlayer;
+	virtual void PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp);
+	virtual void BuildSomething();
 public:
 	IRoundState(){}
 	virtual void Handle(GameRunningState& context, GameManager& gm);
