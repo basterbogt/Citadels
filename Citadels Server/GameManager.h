@@ -17,6 +17,7 @@ private:
 
 	eCharacterCard m_KilledCharacter;
 	eCharacterCard m_RobbedCharacter;
+	shared_ptr<Player> m_8Buildings;
 public:
 	GameManager();
 
@@ -34,6 +35,9 @@ public:
 
 	void setKilled(eCharacterCard character) { m_KilledCharacter = character; }
 	void setRobbed(eCharacterCard character) { m_RobbedCharacter = character; }
+
+	void set8Buildings(shared_ptr<Player> player) { m_8Buildings = player;  }
+	shared_ptr<Player> get8Buildings() { return m_8Buildings;  }
 
 	~GameManager();
 };

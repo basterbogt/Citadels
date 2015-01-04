@@ -56,7 +56,10 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 
 	}
 
-	
+
+	if (m_CurrentPlayer->GetCityCardContainer()->Size() >= 8 && gm.get8Buildings().get() == nullptr) {
+		gm.set8Buildings(m_CurrentPlayer);
+	}
 	//IRoundState::Handle(context, gm);
 }
 
@@ -114,4 +117,5 @@ void IRoundState::BuildSomething() {
 		m_CurrentPlayer->GetCityCardContainer()->Push_Back(cardToUse);
 		m_CurrentPlayer->Send(cardToUse->GetName() + " has been added to your city!");
 	}
+
 }
