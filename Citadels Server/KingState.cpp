@@ -4,6 +4,7 @@
 #include "GameManager.h"
 KingState::KingState()
 {
+	printf("King State\n");
 }
 
 void KingState::Handle(GameRunningState& context, GameManager& gm){

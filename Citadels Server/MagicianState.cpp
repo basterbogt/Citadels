@@ -5,6 +5,7 @@
 #include "KingState.h"
 MagicianState::MagicianState()
 {
+	printf("Magician State\n");
 }
 
 void MagicianState::Handle(GameRunningState& context, GameManager& gm){

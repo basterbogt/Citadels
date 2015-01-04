@@ -4,6 +4,7 @@
 #include "RoundFinishedState.h"
 WarlordState::WarlordState()
 {
+	printf("Warlord State\n");
 }
 
 void WarlordState::Handle(GameRunningState& context, GameManager& gm){

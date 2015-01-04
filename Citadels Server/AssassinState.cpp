@@ -4,6 +4,7 @@
 #include "ThiefState.h"
 AssassinState::AssassinState()
 {
+	printf("Assassin State\n");
 }
 
 void AssassinState::Handle(GameRunningState& context, GameManager& gm){

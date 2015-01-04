@@ -12,12 +12,19 @@ void CharacterSelectionState::Handle(GameRunningState& context, GameManager& gm)
 
 	//gm.GetCardManager()->GetCharacterCardPile()->Pop();
 
+	string newRoundLine1 = "\n-----------------------------------------------------\n";
+	string newRoundLine2 =   "--------------------- NEW ROUND ---------------------\n";
+	string newRoundLine3 =   "-----------------------------------------------------";
+	gm.GetPlayerList()->SendAll(newRoundLine1 + newRoundLine2 + newRoundLine3);
+
 	int AmountOfPlayers = gm.GetPlayerList()->Size();
 
 	int i = 0;
 	while (gm.GetCardManager()->GetCharacterCardPile()->Size() > 1){
 
 		shared_ptr<Player> currentPlayer = gm.GetPlayerList()->GetPlayerAt(i % AmountOfPlayers);
+		gm.GetPlayerList()->SendAllBut(currentPlayer, "\n" + currentPlayer->GetName() + " is picking a Character Card, please wait...\n");
+
 		shared_ptr<CardPile<CharacterCard>> characterCardPile = gm.GetCardManager()->GetCharacterCardPile();
 		if (i == 0) {
 			gm.GetCardManager()->GetCharacterCardDiscardPile()->Push_Back(characterCardPile->Pop());

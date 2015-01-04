@@ -4,6 +4,7 @@
 #include "GameManager.h"
 MerchantState::MerchantState()
 {
+	printf("Merchant State\n");
 }
 
 void MerchantState::Handle(GameRunningState& context, GameManager& gm){

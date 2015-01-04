@@ -4,6 +4,7 @@
 #include "MagicianState.h"
 ThiefState::ThiefState()
 {
+	printf("Thief State\n");
 }
 
 void ThiefState::Handle(GameRunningState& context, GameManager& gm){
@@ -15,7 +16,7 @@ void ThiefState::Handle(GameRunningState& context, GameManager& gm){
 	}
 
 	vector<string> answers = { "Magican", "King", "Bishop", "Merchant", "Architect", "Warlord" };
-	int result = m_CurrentPlayer->RequestInput("Hi Thief, Which character would you like to rob?", answers);
+	int result = m_CurrentPlayer->RequestInput("Which character would you like to rob?", answers);
 
 	gm.setRobbed(eCharacterCard(result + 1));
 

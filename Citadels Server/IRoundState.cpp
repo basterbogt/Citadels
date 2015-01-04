@@ -4,7 +4,13 @@
 void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(currentRole());
 	
-
+	if (m_CurrentPlayer != nullptr){
+		m_CurrentPlayer->Send("\n"+gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:\n");
+		gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, "\n" + gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...\n");
+	}
+	else{
+		gm.GetPlayerList()->SendAll("\n" + gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...\n");
+	}
 
 
 	if (m_CurrentPlayer == nullptr || gm.isKilled(currentRole())) {
@@ -12,8 +18,6 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		return;
 	}
 
-	m_CurrentPlayer->Send(gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:\n");
-	gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...\n");
 
 	if (gm.isRobbed(currentRole())) {
 		shared_ptr<Player> thief = gm.GetPlayerList()->GetPlayerByRole(Thief);
@@ -32,7 +36,7 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		case 0:
 		{
 			m_CurrentPlayer->GiveGoldPieces(2);
-			m_CurrentPlayer->Send("You received 2 goldpieces.");
+			m_CurrentPlayer->Send("You receive 2 goldpieces.");
 			break;
 		}
 		case 1:

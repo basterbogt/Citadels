@@ -1,15 +1,15 @@
 #include "ArchitectState.h"
 #include "GameRunningState.h"
-#include "BishopState.h"
+#include "WarlordState.h"
 
 ArchitectState::ArchitectState()
 {
-
+	printf("Architect State\n");
 }
 
 void ArchitectState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
-	context.setState(unique_ptr < IRoundState > {new BishopState});
+	context.setState(unique_ptr < IRoundState > {new WarlordState});
 }
 
 eCharacterCard ArchitectState::currentRole() {

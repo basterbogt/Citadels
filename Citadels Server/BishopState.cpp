@@ -6,6 +6,7 @@
 #include "GameManager.h"
 BishopState::BishopState()
 {
+	printf("Bishop State\n");
 }
 
 void BishopState::Handle(GameRunningState& context, GameManager& gm){

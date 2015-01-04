@@ -4,6 +4,7 @@
 #include "CharacterSelectionState.h"
 RoundFinishedState::RoundFinishedState()
 {
+	printf("Round Finished State\n");
 	/* Class that will check if the game is finished, by checking the bool method 'IsGameFinished' in the GameManager.
 	If so, switch the GameManager state to 'FinishedState'
 
