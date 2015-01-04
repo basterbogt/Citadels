@@ -9,7 +9,10 @@ MagicianState::MagicianState()
 
 void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
-	
+	if (m_CurrentPlayer.get() == nullptr || gm.isKilled(currentRole())) {
+		context.setState(unique_ptr < IRoundState > {new KingState});
+		return;
+	}
 	vector<string> answers = { "Switch Carts with player", "Dispose carts & get district cards" };
 	int result = m_CurrentPlayer->RequestInput("Make a choice, Magician:", answers);
 
@@ -40,6 +43,8 @@ void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 		break;
 	}
 	case 1:
+		m_CurrentPlayer->Send("Not implemented yet");
+		context.setState(shared_ptr < IRoundState > { new KingState });
 		break;
 
 	

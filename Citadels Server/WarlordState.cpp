@@ -8,6 +8,11 @@ WarlordState::WarlordState()
 
 void WarlordState::Handle(GameRunningState& context, GameManager& gm){
 	IRoundState::Handle(context, gm);
+	if (m_CurrentPlayer.get() == nullptr || gm.isKilled(currentRole())) {
+		context.setState(unique_ptr < IRoundState > {new RoundFinishedState});
+		return;
+	}
+
 	m_CurrentPlayer->GiveGPForCards(red);
 	
 	vector<string> victims;

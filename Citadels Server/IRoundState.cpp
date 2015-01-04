@@ -4,14 +4,16 @@
 void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(currentRole());
 	
-	m_CurrentPlayer->Send(gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:\n");
-	gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...\n");
+
 
 
 	if (m_CurrentPlayer == nullptr || gm.isKilled(currentRole())) {
 		gm.GetPlayerList()->SendAll("Hmm... nothing happend.");
 		return;
 	}
+
+	m_CurrentPlayer->Send(gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn:\n");
+	gm.GetPlayerList()->SendAllBut(m_CurrentPlayer, gm.GetCardManager()->CharacterEnumToString(currentRole()) + "'s turn, please wait...\n");
 
 	if (gm.isRobbed(currentRole())) {
 		shared_ptr<Player> thief = gm.GetPlayerList()->GetPlayerByRole(Thief);
