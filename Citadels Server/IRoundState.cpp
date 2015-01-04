@@ -14,7 +14,7 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 
 
 	if (m_CurrentPlayer == nullptr || gm.isKilled(currentRole())) {
-		gm.GetPlayerList()->SendAll("Hmm... nothing happend.");
+		gm.GetPlayerList()->SendAll("Hmm... nothing happened.");
 		return;
 	}
 
