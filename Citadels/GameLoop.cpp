@@ -16,8 +16,7 @@ GameLoop::GameLoop()
 {
 	getServerInformation();
 
-	socket = new ClientSocket(m_IP, m_Port);
-	shared_ptr<ClientSocket> server{ socket };
+	shared_ptr<ClientSocket> server{ new ClientSocket(m_IP, m_Port) };
 
 	while (true) { // game loop
 		try {
@@ -55,12 +54,11 @@ void GameLoop::getServerInformation(){
 	ifstream input_file(textfile);
 	input_file >> ip >> m_Port;
 
-	m_IP = new char[ip.size() + 1];
-	m_IP[ip.size()] = 0;
-	memcpy(m_IP, ip.c_str(), ip.size());
+	m_IP = &ip[0];
+	
 }
 
 GameLoop::~GameLoop()
 {
-
+	delete[] m_IP;//Not sure if this is required, but w/e
 }
