@@ -19,11 +19,6 @@ void CardReader::parse() {
 			continue;
 		}
 
-		// skip specials for now.
-		if (!result.at(4).empty()) {
-			continue;
-		}
-
 		string name = result.at(0);
 		int costs = atoi(result.at(1).c_str());
 		int points = atoi(result.at(1).c_str());
