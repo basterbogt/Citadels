@@ -142,6 +142,10 @@ void Player::GiveGPForCards(CardColour colour) {
 		}
 	}
 
+	if (GetCityCardContainer()->HasCard("School voor magiërs")) {
+		cardCount++;
+	}
+
 	if (cardCount > 0) {
 		Send("You have received additional goldpieces because of your cards! Bonus GP: " + std::to_string(cardCount));
 		GiveGoldPieces(cardCount);
