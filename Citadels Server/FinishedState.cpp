@@ -60,15 +60,15 @@ FinishedState::~FinishedState()
 bool FinishedState::HasBuildingsOf5Colours(shared_ptr<Player> player) {
 	vector<CardColour> checkList;
 	
-	for (int i{ 0 }; i < player->GetDistrictCardContainer()->Size(); i++) {
-		shared_ptr<DistrictCard> card = player->GetDistrictCardContainer()->At(i);
+	for (int i{ 0 }; i < player->GetCityCardContainer()->Size(); i++) {
+		shared_ptr<DistrictCard> card = player->GetCityCardContainer()->At(i);
 
 		if (std::find(checkList.begin(), checkList.end(), card->GetColour()) != checkList.end()) {
 			checkList.push_back(card->GetColour());
 		}
 	}
 
-	return checkList.size() >= 5;
+	return checkList.size() >= 5 || checkList.size() >= 4 && player->GetCityCardContainer()->HasCard("Hof der Wonderen");
 }
 
 shared_ptr<Player> FinishedState::GetWinningPlayer(map<shared_ptr<Player>, int> scoreboard) {

@@ -74,6 +74,15 @@ public:
 	}
 
 	virtual ~CardPile() {}
+
+	bool HasCard(string name) {
+		bool result = false;
+		for (int i{ 0 }; i < m_Cards.size() && !result; i++) {
+			result = (m_Cards.at(i)->GetName() == name);
+		}
+
+		return result;
+	}
 };
 
 /*
