@@ -19,19 +19,27 @@ void FinishedState::Handle(GameManager& gm){
 		shared_ptr<Player> player = gm.GetPlayerList()->GetPlayerAt(i);
 
 		// Points for every building in the city
-		points =+ player->GetCityCardContainer()->Size();
+		points += player->GetCityCardContainer()->Size();
 
 		// 5 points if player owns buildings of all the 5 colours
 		if (HasBuildingsOf5Colours(player)) {
-			points =+ 5;
+			points += 5;
 		}
 		// 4 points for the first player who builds 8 buildings
 		if (player.get() == gm.get8Buildings().get()) {
-			points = +4;
+			points += 4;
 		}
 		// 2 points for each player who constructed 8 buildings as well
 		else if (player->GetCityCardContainer()->Size() >= 8) {
-			points = +2;
+			points += 2;
+		}
+
+		if (player->GetCityCardContainer()->HasCard("Drakenpoort")) {
+			points += 2;
+		}
+
+		if (player->GetCityCardContainer()->HasCard("Universiteit")) {
+			points += 2;
 		}
 
 		scoreboard[player] = points;
