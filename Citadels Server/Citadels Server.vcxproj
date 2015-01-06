@@ -92,6 +92,7 @@
     <ClInclude Include="GameRunningState.h" />
     <ClInclude Include="ICard.h" />
     <ClInclude Include="IGameState.h" />
+    <ClInclude Include="InitRoundState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IRoundState.h" />
     <ClInclude Include="KingState.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameRunningState.cpp" />
     <ClCompile Include="ICard.cpp" />
+    <ClCompile Include="InitRoundState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IRoundState.cpp" />
     <ClCompile Include="KingState.cpp" />

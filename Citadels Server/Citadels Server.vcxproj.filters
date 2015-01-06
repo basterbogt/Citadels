@@ -165,6 +165,9 @@
     <ClInclude Include="CardReader.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="InitRoundState.h">
+      <Filter>Header Files\State\RoundState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -250,6 +253,9 @@
     </ClCompile>
     <ClCompile Include="CardReader.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="InitRoundState.cpp">
+      <Filter>Source Files\State\RoundState</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

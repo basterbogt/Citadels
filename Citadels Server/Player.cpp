@@ -149,6 +149,33 @@ void Player::GiveGPForCards(CardColour colour) {
 	}
 }
 
+void Player::ShowStats() {
+	string output = "\n";
+	output += " ==== STATS ====\n";
+
+	output += "> CITY <\n";
+
+	for (int i{ 0 }; i < GetCityCardContainer()->Size(); i++) {
+		output += " - " + GetCityCardContainer()->At(i)->GetName() + "\n";
+	}
+
+	output += "\n\n > DistrictCards < \n";
+
+	for (int i{ 0 }; i < GetDistrictCardContainer()->Size(); i++) {
+		output += " - " + GetDistrictCardContainer()->At(i)->GetName() + "\n";
+	}
+
+	output += "\n\n > Characters < \n";
+
+	for (int i{ 0 }; i < GetCharacterCardContainer()->Size(); i++) {
+		output += " - " + GetCharacterCardContainer()->At(i)->GetName() + "\n";
+	}
+
+	output += "\n\n Wallet: " + std::to_string(GetGoldPieces()) + "gp\n";
+
+	Send(output);
+}
+
 Player::~Player()
 {
 }

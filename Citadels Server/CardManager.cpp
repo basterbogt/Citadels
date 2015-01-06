@@ -40,7 +40,7 @@ CardManager::CardManager()
 
 	CardReader reader("district_cards.csv");
 	reader.parse();
-	m_DistrictCardDiscardPile->AddCardPile(reader.getCards());
+	m_DistrictCardPile->AddCardPile(reader.getCards());
 
 	
 }

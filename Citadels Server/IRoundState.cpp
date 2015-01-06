@@ -18,6 +18,8 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		return;
 	}
 
+	m_CurrentPlayer->ShowStats();
+
 
 	if (gm.isRobbed(currentRole())) {
 		shared_ptr<Player> thief = gm.GetPlayerList()->GetPlayerByRole(Thief);
@@ -42,7 +44,7 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		case 1:
 		{
 			// rekening houden met een lege stapel!
-			shared_ptr<CardPile<DistrictCard>> cp = gm.GetCardManager()->GetDistrictCardDiscardPile();
+			shared_ptr<CardPile<DistrictCard>> cp = gm.GetCardManager()->GetDistrictCardPile();
 
 			PickDistrictCard(cp);
 
