@@ -46,7 +46,13 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 			// rekening houden met een lege stapel!
 			shared_ptr<CardPile<DistrictCard>> cp = gm.GetCardManager()->GetDistrictCardPile();
 
-			PickDistrictCard(cp);
+			if (m_CurrentPlayer->GetCityCardContainer()->HasCard("Observatorium")) {
+				PickDistrictCard(cp,3);
+			}
+			else {
+				PickDistrictCard(cp, 2);
+			}
+			
 
 			break;
 		}
@@ -76,6 +82,8 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		shared_ptr<DistrictCard> card = m_CurrentPlayer->GetDistrictCardContainer()->Take(cardIndex);
 		gm.GetCardManager()->GetDistrictCardDiscardPile()->Push_Back(card);
 
+		m_CurrentPlayer->GiveGoldPieces(1);
+
 	}
 
 
@@ -86,30 +94,46 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 }
 
 
-void IRoundState::PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp) {
+void IRoundState::PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp, int amount) {
 
-	if (cp->Size() >= 2) {
-		vector < shared_ptr<DistrictCard> > choices{ cp->Pop(), cp->Pop() };
-
-		vector<string> answers = { choices.at(0)->GetName(), choices.at(1)->GetName() };
-		int result = m_CurrentPlayer->RequestInput("Which card would you like to keep?", answers);
-
-		int leftOver = 1 - result;
-
-		m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(choices.at(result));
-		cp->Push_Back(choices.at(leftOver));
-
-		m_CurrentPlayer->Send("You picked a " + choices.at(result)->GetName());
-
-
+	if (cp->Size() <= 0) {
+		m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. #getRekt");
+		return;
 	}
-	else if (cp->Size() == 1) {
-		shared_ptr<DistrictCard> card1 = cp->Pop();
-		m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card1);
-		m_CurrentPlayer->Send("One card left, you picked a " + card1->GetName());
+
+	int options = min(cp->Size(), amount);
+	vector<shared_ptr<DistrictCard>> choices;
+
+	for (int i{ 0 }; i < options; i++) {
+		choices.push_back(cp->Pop());
+	}
+
+	if (m_CurrentPlayer->GetCityCardContainer()->HasCard("Bibliotheek")) {
+		m_CurrentPlayer->Send("You have a library, so you can keep " + std::to_string(amount) + " cards");
+		for (auto &card : choices) {
+			m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card);
+			m_CurrentPlayer->Send("You picked a " + card->GetName());
+		}
 	}
 	else {
-		m_CurrentPlayer->Send("Sorry, district card pile is empty. You receive nothing. #getRekt");
+		vector<string> answers;
+
+		for (auto &card : choices) {
+			answers.push_back(card->GetName());
+		}
+
+		int result = m_CurrentPlayer->RequestInput("Which card would you like to keep?", answers);
+
+		for (auto &card : choices) {
+			if (card.get() == choices.at(result).get()) {
+
+				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card);
+				m_CurrentPlayer->Send("You picked a " + card->GetName());
+			}
+			else {
+				cp->Push_Back(card);
+			}
+		}
 	}
 }
 

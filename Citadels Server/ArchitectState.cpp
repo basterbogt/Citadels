@@ -20,11 +20,11 @@ ArchitectState::~ArchitectState()
 {
 
 }
-void ArchitectState::PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp) {
+void ArchitectState::PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp, int amount) {
 	int askTimes = std::min<int>(cp->Size(), 2);
 
 	for (int i{ 0 }; i < askTimes; i++) {
-		IRoundState::PickDistrictCard(cp);
+		IRoundState::PickDistrictCard(cp, amount);
 	}
 	
 }
