@@ -47,8 +47,8 @@ void WarlordState::Handle(GameRunningState& context, GameManager& gm){
 
 	shared_ptr<DistrictCard> removedCard = choosenVictim->GetCityCardContainer()->Take(choice);
 
-	if (removedCard->getCost() - 1 > m_CurrentPlayer->GetGoldPieces()) {
-		m_CurrentPlayer->Send("You are not wealthy enough to do this!");
+	if (removedCard->getCost() - 1 > m_CurrentPlayer->GetGoldPieces() || removedCard->GetName() == "Kerker") {
+		m_CurrentPlayer->Send("You cannot do this!");
 		choosenVictim->GetCityCardContainer()->Push_Back(removedCard);
 	}
 	else {
