@@ -64,6 +64,20 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 
 	}
 
+	if (m_CurrentPlayer->GetCityCardContainer()->HasCard("Laboratorium") && m_CurrentPlayer->GetDistrictCardContainer()->Size() >= 1) {
+		int result = m_CurrentPlayer->RequestInput("Would you like to make use of your special ability to return one of your cards?", vector < string > {"Yes", "No"});
+
+		if (result == 1) {
+			return;
+		}
+
+		int cardIndex = m_CurrentPlayer->RequestInput("Which card would you like to return?", m_CurrentPlayer->GetDistrictCardContainer()->ToVector());
+
+		shared_ptr<DistrictCard> card = m_CurrentPlayer->GetDistrictCardContainer()->Take(cardIndex);
+		gm.GetCardManager()->GetDistrictCardDiscardPile()->Push_Back(card);
+
+	}
+
 
 	if (m_CurrentPlayer->GetCityCardContainer()->Size() >= 8 && gm.get8Buildings().get() == nullptr) {
 		gm.set8Buildings(m_CurrentPlayer);

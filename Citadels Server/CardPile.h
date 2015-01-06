@@ -83,6 +83,17 @@ public:
 
 		return result;
 	}
+
+	vector<string> ToVector() {
+		vector<string> cardNames;
+
+		for (int i{ 0 }; i < m_Cards.size(); i++) {
+			cardNames.push_back(m_Cards.at(i)->GetName());
+		}
+
+		return cardNames;
+	
+	}
 };
 
 /*
