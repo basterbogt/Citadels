@@ -56,7 +56,34 @@ void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 		break;
 	}
 	case 1:
-		m_CurrentPlayer->Send("Not implemented yet");
+		if (m_CurrentPlayer->GetDistrictCardContainer()->Size() <= 0) {
+			m_CurrentPlayer->Send("You do not have any cards which you can return.");
+		}
+		else {
+			
+			int requestedCards{ 0 };
+			int answer{ -1 };
+			vector<string> choices = m_CurrentPlayer->GetDistrictCardContainer()->ToVector();
+			choices.push_back("I'm finished!");
+
+			do {
+				answer = m_CurrentPlayer->RequestInput("Which cards would you like to dispose?", choices);
+
+				if (answer != choices.size() - 1) {
+					shared_ptr<DistrictCard> removedCard = m_CurrentPlayer->GetDistrictCardContainer()->Take(answer);
+					gm.GetCardManager()->GetDistrictCardDiscardPile()->Push_Back(removedCard);
+				}
+			} while (answer != (choices.size() - 1));
+
+			int cardsToGive = min(requestedCards, gm.GetCardManager()->GetDistrictCardPile()->Size());
+
+			for (int i{ 0 }; i < cardsToGive; i++) {
+				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(gm.GetCardManager()->GetDistrictCardPile()->Pop());
+			}
+
+			m_CurrentPlayer->Send("You received " + std::to_string(cardsToGive) + " new cards");
+
+		}
 		context.setState(shared_ptr < IRoundState > { new KingState });
 		break;
 	}
