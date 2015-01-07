@@ -63,10 +63,12 @@ void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 			
 			int requestedCards{ 0 };
 			int answer{ -1 };
-			vector<string> choices = m_CurrentPlayer->GetDistrictCardContainer()->ToVector();
-			choices.push_back("I'm finished!");
+			vector<string> choices;
 
 			do {
+				choices = m_CurrentPlayer->GetDistrictCardContainer()->ToVector();
+				choices.push_back("I'm finished!");
+
 				answer = m_CurrentPlayer->RequestInput("Which cards would you like to dispose?", choices);
 
 				if (answer != choices.size() - 1) {
