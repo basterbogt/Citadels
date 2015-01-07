@@ -1,5 +1,6 @@
 #include "IRoundState.h"
 #include "GameManager.h"
+#include "CardManager.h"
 
 void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 	m_CurrentPlayer = gm.GetPlayerList()->GetPlayerByRole(currentRole());
@@ -17,6 +18,8 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 		gm.GetPlayerList()->SendAll("Hmm... nothing happened.");
 		return;
 	}
+
+	RefillDistrictCardPileIfDepleted(gm.GetCardManager(), DISTRICT_CARD_DEPLETION_THRESHOLD);
 
 	m_CurrentPlayer->ShowStats();
 
@@ -86,6 +89,19 @@ void IRoundState::Handle(GameRunningState& context, GameManager& gm){
 
 	}
 
+	if (m_CurrentPlayer->GetCityCardContainer()->HasCard("Werkplaats") && m_CurrentPlayer->GetGoldPieces() >= 3) {
+		int answer = m_CurrentPlayer->RequestInput("Would you like to make use of the Werkplaats and buy some cards?", vector < string > {"yes", "no"});
+		
+		if (answer == 0) {
+			for (int i{ 0 }; i < 2; i++) {
+				shared_ptr<DistrictCard> card = gm.GetCardManager()->GetDistrictCardPile()->Pop();
+				m_CurrentPlayer->Send("You picked a " + card->GetName());
+				m_CurrentPlayer->GetDistrictCardContainer()->Push_Back(card);
+			}
+		}
+
+	}
+
 
 	if (m_CurrentPlayer->GetCityCardContainer()->Size() >= 8 && gm.get8Buildings().get() == nullptr) {
 		gm.set8Buildings(m_CurrentPlayer);
@@ -134,6 +150,18 @@ void IRoundState::PickDistrictCard(shared_ptr<CardPile<DistrictCard>> cp, int am
 				cp->Push_Back(card);
 			}
 		}
+	}
+}
+
+void IRoundState::RefillDistrictCardPileIfDepleted(shared_ptr<CardManager> cm, int threshold) {
+
+	if (cm->GetDistrictCardPile()->Size() < threshold) {
+		
+		for (int i{ 0 }; i < cm->GetCharacterCardDiscardPile()->Size(); i++) {
+			cm->GetDistrictCardPile()->Push_Back(cm->GetDistrictCardDiscardPile()->Pop());
+		}
+
+		cm->GetDistrictCardPile()->Shuffle();
 	}
 }
 
