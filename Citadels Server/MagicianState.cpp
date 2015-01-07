@@ -74,6 +74,8 @@ void MagicianState::Handle(GameRunningState& context, GameManager& gm){
 				if (answer != choices.size() - 1) {
 					shared_ptr<DistrictCard> removedCard = m_CurrentPlayer->GetDistrictCardContainer()->Take(answer);
 					gm.GetCardManager()->GetDistrictCardDiscardPile()->Push_Back(removedCard);
+
+					requestedCards++;
 				}
 			} while (answer != (choices.size() - 1));
 
