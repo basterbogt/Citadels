@@ -14,6 +14,12 @@ _CrtDumpMemoryLeaks();
 CloseHandle(stream);
 #endif
 
+/*
+Gijs van de Water
+Bas ter Bogt
+
+*/
+
 int main(int argc, const char * argv[])
 {
 	srand(time(0));
