@@ -63,6 +63,18 @@ int PlayerList::Size(){
 	return m_PlayerList.size();
 }
 
+void PlayerList::MoveToFront(shared_ptr<Player> player) {
+	vector<shared_ptr<Player>> newPlayerList{player};
+
+	for (auto &plr : m_PlayerList) {
+		if (plr != player) {
+			newPlayerList.push_back(plr);
+		}
+	}
+
+	m_PlayerList = newPlayerList;
+}
+
 PlayerList::~PlayerList()
 {
 }

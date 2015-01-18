@@ -1,7 +1,7 @@
 #pragma once
 #include "ICard.h"
 
-enum eCharacterCard { Assassin, Thief, Magician, King, Bishop, Merchant, Architect, Warlord };
+enum eCharacterCard { Assassin, Thief, Magician, King, Bishop, Merchant, Architect, Warlord, NotSet };
 
 class CharacterCard :
 	public ICard

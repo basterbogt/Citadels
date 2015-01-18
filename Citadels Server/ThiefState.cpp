@@ -18,7 +18,7 @@ void ThiefState::Handle(GameRunningState& context, GameManager& gm){
 	vector<string> answers = { "Magican", "King", "Bishop", "Merchant", "Architect", "Warlord" };
 	int result = m_CurrentPlayer->RequestInput("Which character would you like to rob?", answers);
 
-	gm.setRobbed(eCharacterCard(result + 1));
+	gm.setRobbed(eCharacterCard(result + 2));
 
 	m_CurrentPlayer->Send("You robbed the " + answers.at(result) + "\n");
 

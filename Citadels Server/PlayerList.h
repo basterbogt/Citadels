@@ -23,6 +23,7 @@ public:
 	void RemovePlayer(shared_ptr<Player> player);
 	void SendAll(string message);
 	void SendAllBut(shared_ptr<Player> player, string message);
+	void MoveToFront(shared_ptr<Player> player);
 	int Size();
 
 	virtual ~PlayerList();

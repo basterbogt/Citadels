@@ -36,6 +36,10 @@ void RoundFinishedState::Handle(GameRunningState& context, GameManager& gm){
 		
 	}
 
+	// Afzien van iemand te doden of stelen als het niet gelukt is
+	gm.setKilled(NotSet);
+	gm.setRobbed(NotSet);
+
 
 	// Has the game been finished?
 	for (int i{ 0 }; i < gm.GetPlayerList()->Size(); i++) {

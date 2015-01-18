@@ -14,7 +14,11 @@ void KingState::Handle(GameRunningState& context, GameManager& gm){
 		return;
 	}
 	m_CurrentPlayer->GiveGPForCards(yellow);
+
+	gm.GetPlayerList()->MoveToFront(m_CurrentPlayer);
 	context.setState(unique_ptr < IRoundState > {new BishopState});
+
+	
 }
 
 
